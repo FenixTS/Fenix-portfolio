@@ -15,6 +15,7 @@ import {
   ListItem,
   ListItemText,
   ListItemIcon,
+  Avatar,
 } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
 import HomeIcon from '@mui/icons-material/Home';
@@ -44,6 +45,7 @@ const Navbar = ({ onColorSchemeChange, onFontFamilyChange }: NavbarProps) => {
     { text: 'Profile', icon: <PersonIcon />, path: '/profile' },
     { text: 'Projects', icon: <CodeIcon />, path: '/projects' },
     { text: 'Experience', icon: <WorkIcon />, path: '/experience' },
+    { text: 'Education', icon: <SchoolIcon />, path: '/education' },
     { text: 'Skills', icon: <SchoolIcon />, path: '/skills' },
     { text: 'Achievements', icon: <EmojiEventsIcon />, path: '/achievements' },
     { text: 'Contact', icon: <ContactMailIcon />, path: '/contact' },
@@ -88,14 +90,43 @@ const Navbar = ({ onColorSchemeChange, onFontFamilyChange }: NavbarProps) => {
   return (
     <AppBar position="sticky" color="default" elevation={1}>
       <Toolbar>
-        <Typography
-          variant="h6"
-          component="div"
-          sx={{ flexGrow: 1, cursor: 'pointer' }}
+        <Box
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: 2,
+            flexGrow: 1,
+            cursor: 'pointer',
+          }}
           onClick={() => navigate('/')}
         >
-          Portfolio
-        </Typography>
+          <Avatar
+            src="/profile-image.jpg"
+            alt="Fenix T.S"
+            sx={{
+              width: 40,
+              height: 40,
+              border: '2px solid',
+              borderColor: 'primary.main',
+              transition: 'transform 0.3s ease-in-out',
+              '&:hover': {
+                transform: 'scale(1.1)',
+              },
+            }}
+          />
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{
+              fontWeight: 600,
+              background: 'linear-gradient(45deg, #2196f3 30%, #f50057 90%)',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            Fenix T.S
+          </Typography>
+        </Box>
 
         {isMobile ? (
           <>

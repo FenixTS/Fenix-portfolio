@@ -8,6 +8,7 @@ import {
   Button,
   useTheme,
   useMediaQuery,
+  Chip,
 } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useGSAP } from '@gsap/react';
@@ -17,6 +18,12 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import TechStack from '../components/TechStack';
 import VideoInteractions from '../components/VideoInteractions';
+import EmailIcon from '@mui/icons-material/Email';
+import PhoneIcon from '@mui/icons-material/Phone';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
+import CakeIcon from '@mui/icons-material/Cake';
+import TwitterIcon from '@mui/icons-material/Twitter';
+import LanguageIcon from '@mui/icons-material/Language';
 
 const Profile = () => {
   const theme = useTheme();
@@ -33,7 +40,7 @@ const Profile = () => {
   }, []);
 
   return (
-    <Box>
+    <Box sx={{ minHeight: '100vh', py: 8 }}>
       {/* Banner Section */}
       <Box
         sx={{
@@ -265,8 +272,181 @@ const Profile = () => {
           </Box>
 
           {/* Tech Stack Section */}
-          <Box sx={{ mt: 6 }}>
+          <Box sx={{ mt: 8 }}>
             <TechStack />
+          </Box>
+
+          {/* Personal Details Section */}
+          <Box sx={{ mt: 8 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Paper elevation={3} sx={{ p: 4 }}>
+                <Typography variant="h4" component="h2" gutterBottom align="center" sx={{ mb: 4 }}>
+                  Personal Details
+                </Typography>
+                
+                <Grid container spacing={4}>
+                  {/* Contact Information */}
+                  <Grid item xs={12} md={6}>
+                    <Typography variant="h6" gutterBottom sx={{ mb: 3 }}>
+                      Contact Information
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <EmailIcon color="primary" />
+                        <Typography>email@example.com</Typography>
+                      </Box>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <PhoneIcon color="primary" />
+                        <Typography>+1 234 567 8900</Typography>
+                      </Box>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <LocationOnIcon color="primary" />
+                        <Typography>City, Country</Typography>
+                      </Box>
+                      <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                        <CakeIcon color="primary" />
+                        <Typography>Date of Birth</Typography>
+                      </Box>
+                        {/* Languages */}
+                  <Grid item xs={12} md={6}>
+                    <Typography variant="h6" gutterBottom sx={{ mb: 3 }}>
+                      <LanguageIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
+                      Languages Known
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, mb: 4 }}>
+                      <Chip
+                        label="Tamil"
+                        color="primary"
+                        variant="outlined"
+                        sx={{
+                          fontSize: '1rem',
+                          padding: '8px 16px',
+                          '&:hover': {
+                            backgroundColor: 'primary.light',
+                            color: 'white',
+                          },
+                        }}
+                      />
+                      <Chip
+                        label="English"
+                        color="primary"
+                        variant="outlined"
+                        sx={{
+                          fontSize: '1rem',
+                          padding: '8px 16px',
+                          '&:hover': {
+                            backgroundColor: 'primary.light',
+                            color: 'white',
+                          },
+                        }}
+                      />
+                      <Chip
+                        label="Malayalam"
+                        color="primary"
+                        variant="outlined"
+                        sx={{
+                          fontSize: '1rem',
+                          padding: '8px 16px',
+                          '&:hover': {
+                            backgroundColor: 'primary.light',
+                            color: 'white',
+                          },
+                        }}
+                      />
+                    </Box>
+                  </Grid>
+                     
+                    </Box>
+                  </Grid>
+
+                
+
+                  {/* Social Links */}
+                  <Grid item xs={12} md={6}>
+                    
+                    <Typography variant="h6" gutterBottom sx={{ mb: 3 }}>
+                      Social Links
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+                      <Button
+                        variant="outlined"
+                        startIcon={<LinkedInIcon />}
+                        href="https://linkedin.com/in/yourprofile"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{ justifyContent: 'flex-start' }}
+                      >
+                        LinkedIn Profile
+                      </Button>
+                      <Button
+                        variant="outlined"
+                        startIcon={<GitHubIcon />}
+                        href="https://github.com/yourusername"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{ justifyContent: 'flex-start' }}
+                      >
+                        GitHub Profile
+                      </Button>
+                      <Button
+                        variant="outlined"
+                        startIcon={<TwitterIcon />}
+                        href="https://twitter.com/yourhandle"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        sx={{ justifyContent: 'flex-start' }}
+                      >
+                        Twitter Profile
+                      </Button>
+                      <Button
+                        variant="contained"
+                        startIcon={<DownloadIcon />}
+                        href="/resume.pdf"
+                        target="_blank"
+                        download
+                        sx={{
+                          mt: 4,
+                          bgcolor: theme.palette.primary.main,
+                          color: 'white',
+                          '&:hover': {
+                            bgcolor: theme.palette.primary.dark,
+                            transform: 'translateY(-2px)',
+                          },
+                          transition: 'transform 0.3s ease',
+                          boxShadow: 2,
+                          fontWeight: 'bold',
+                        }}
+                      >
+                        Download Resume
+                      </Button>
+                    </Box>
+                  </Grid>
+
+                  {/* Additional Information */}
+                  <Grid item xs={12}>
+                    <Typography variant="h6" gutterBottom sx={{ mb: 3 }}>
+                      Additional Information
+                    </Typography>
+                    <Paper variant="outlined" sx={{ p: 3, bgcolor: 'background.default' }}>
+                      <Typography paragraph>
+                        I am a passionate Full Stack Developer with expertise in building modern web applications.
+                        My journey in software development started with a curiosity about how things work on the web.
+                        Today, I specialize in creating responsive, user-friendly applications using cutting-edge
+                        technologies and best practices.
+                      </Typography>
+                      <Typography paragraph>
+                        When I'm not coding, I enjoy exploring new technologies, contributing to open-source projects,
+                        and sharing my knowledge through technical writing and mentoring.
+                      </Typography>
+                    </Paper>
+                  </Grid>
+                </Grid>
+              </Paper>
+            </motion.div>
           </Box>
         </Box>
       </Container>
