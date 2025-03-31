@@ -11,6 +11,7 @@ import Profile from './pages/Profile';
 import Skills from './pages/Skills';
 import Achievements from './pages/Achievements';
 import Education from './pages/Education';
+import Admin from './pages/Admin';
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/skills" element={<Skills />} />
           <Route path="/achievements" element={<Achievements />} />
           <Route path="/education" element={<Education />} />
+          <Route path="/admin" element={<Admin/>} />
         </Routes>
       </Router>
     </ThemeProvider>
