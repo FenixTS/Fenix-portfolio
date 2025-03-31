@@ -83,7 +83,7 @@ const Footer = () => {
             </Typography>
             <Box sx={{ display: 'flex', gap: 2 }}>
               <IconButton
-                href="https://linkedin.com/in/yourprofile"
+                href="https://www.linkedin.com/in/fenix-t-s/"
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{
@@ -98,7 +98,7 @@ const Footer = () => {
                 <LinkedInIcon />
               </IconButton>
               <IconButton
-                href="https://github.com/yourusername"
+                href="https://github.com/FenixTS"
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{

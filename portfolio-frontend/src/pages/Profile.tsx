@@ -44,27 +44,193 @@ const Profile = () => {
       {/* Banner Section */}
       <Box
         sx={{
-          height: '300px',
-          background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+          height: { xs: '250px', sm: '300px' },
+          background: `linear-gradient(135deg, ${theme.palette.primary.main} 0%, ${theme.palette.secondary.main} 100%)`,
           position: 'relative',
           overflow: 'hidden',
-          marginTop: '0px', // Adjust for AppBar height
+          marginTop: '0px',
         }}
       >
+        {/* Animated Background Pattern */}
         <motion.div
-          initial={{ scale: 1.2 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1 }}
+          initial={{ scale: 1.2, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.1 }}
+          transition={{ duration: 1.5, ease: 'easeOut' }}
           style={{
             position: 'absolute',
             top: 0,
             left: 0,
             right: 0,
             bottom: 0,
-            background: 'url("/banner-pattern.svg")',
-            opacity: 0.1,
+            background: 'url("/assets/Profile-Banner.png")',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
           }}
         />
+
+        {/* Animated Gradient Overlay */}
+        <Box
+          sx={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'linear-gradient(45deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.1) 100%)',
+          }}
+        />
+
+        {/* Banner Content */}
+        <Container maxWidth="lg" sx={{ height: '100%', position: 'relative' }}>
+          <Grid container spacing={4} alignItems="center" sx={{ height: '100%' }}>
+            <Grid item xs={12} md={6}>
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
+                <Typography
+                  variant="h3"
+                  component="h1"
+                  sx={{
+                    color: 'white',
+                    fontWeight: 700,
+                    mb: 2,
+                    textShadow: '2px 2px 4px rgba(0,0,0,0.2)',
+                  }}
+                >
+                  Fenix T.S
+                </Typography>
+                <Typography
+                  variant="h5"
+                  sx={{
+                    color: 'white',
+                    mb: 3,
+                    opacity: 0.9,
+                  }}
+                >
+                  Full Stack Developer & MERN Stack Trainer
+                </Typography>
+                <Box sx={{ display: 'flex', gap: 2, flexWrap: 'wrap' }}>
+                  <Button
+                  href='assets/files/Fenix-Resume.pdf'
+                  download={"assets/files/Fenix-Resume.pdf"}
+                    variant="contained"
+                    startIcon={<DownloadIcon />}
+                    sx={{
+                      bgcolor: 'white',
+                      color: 'primary.main',
+                      '&:hover': {
+                        bgcolor: 'grey.100',
+                        transform: 'translateY(-2px)',
+                      },
+                      transition: 'all 0.3s ease',
+                    }}
+                  >
+                    Download Resume
+                  </Button>
+                  <Button
+                  href='https://www.linkedin.com/in/fenix-t-s/'
+                  target="_blank"
+                    variant="outlined"
+                    startIcon={<LinkedInIcon />}
+                    sx={{
+                      borderColor: 'white',
+                      color: 'white',
+                      '&:hover': {
+                        borderColor: 'white',
+                        bgcolor: 'rgba(255,255,255,0.1)',
+                        transform: 'translateY(-2px)',
+                      },
+                      transition: 'all 0.3s ease',
+                    }}
+                  >
+                    Connect
+                  </Button>
+                </Box>
+              </motion.div>
+            </Grid>
+            <Grid item xs={12} md={6}>
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
+                  alignItems: 'center',
+                }}
+              >
+                <Box
+                  sx={{
+                    display: 'flex',
+                    gap: 2,
+                    flexWrap: 'wrap',
+                    justifyContent: 'center',
+                  }}
+                >
+                  {[
+                    { 
+                      icon: <GitHubIcon />, 
+                      label: 'GitHub',
+                      href: 'https://github.com/FenixTS',
+                      target: '_blank'
+                    },
+                    { 
+                      icon: <LinkedInIcon />, 
+                      label: 'LinkedIn',
+                      href: 'https://www.linkedin.com/in/fenix-t-s/',
+                      target: '_blank'
+                    },
+                    { icon: <TwitterIcon />, label: 'Twitter' },
+                  ].map((social, index) => (
+                    <motion.div
+                      key={index}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ delay: 0.6 + index * 0.1 }}
+                    >
+                      <Paper
+                        component={social.href ? 'a' : 'div'}
+                        href={social.href}
+                        target={social.target}
+                        elevation={3}
+                        sx={{
+                          p: 2,
+                          display: 'flex',
+                          flexDirection: 'column',
+                          alignItems: 'center',
+                          bgcolor: 'rgba(255,255,255,0.1)',
+                          backdropFilter: 'blur(10px)',
+                          border: '1px solid rgba(255,255,255,0.2)',
+                          cursor: social.href ? 'pointer' : 'default',
+                          transition: 'all 0.3s ease',
+                          textDecoration: 'none',
+                          '&:hover': {
+                            transform: 'translateY(-5px)',
+                            bgcolor: 'rgba(255,255,255,0.2)',
+                          },
+                        }}
+                      >
+                        {social.icon}
+                        <Typography
+                          variant="caption"
+                          sx={{
+                            color: 'white',
+                            mt: 1,
+                            fontSize: '0.75rem',
+                          }}
+                        >
+                          {social.label}
+                        </Typography>
+                      </Paper>
+                    </motion.div>
+                  ))}
+                </Box>
+              </motion.div>
+            </Grid>
+          </Grid>
+        </Container>
       </Box>
 
       <Container maxWidth="lg">
@@ -72,7 +238,7 @@ const Profile = () => {
         <Box
           className="profile-content"
           sx={{
-            mt: '-100px',
+            mt: { xs: '-50px', sm: '-100px' },
             position: 'relative',
             zIndex: 1,
             pb: 8,
@@ -102,7 +268,7 @@ const Profile = () => {
                 >
                   <Box
                     component="img"
-                    src="/profile.jpg"
+                    src="/assets/Profile-icon.webp"
                     alt="Profile"
                     sx={{
                       width: '100%',
@@ -377,7 +543,7 @@ const Profile = () => {
                       <Button
                         variant="outlined"
                         startIcon={<LinkedInIcon />}
-                        href="https://linkedin.com/in/yourprofile"
+                        href="https://www.linkedin.com/in/fenix-t-s/"
                         target="_blank"
                         rel="noopener noreferrer"
                         sx={{ justifyContent: 'flex-start' }}
@@ -387,7 +553,7 @@ const Profile = () => {
                       <Button
                         variant="outlined"
                         startIcon={<GitHubIcon />}
-                        href="https://github.com/yourusername"
+                        href="https://github.com/FenixTS"
                         target="_blank"
                         rel="noopener noreferrer"
                         sx={{ justifyContent: 'flex-start' }}

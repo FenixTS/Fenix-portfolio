@@ -76,7 +76,7 @@ const About = () => {
             >
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Avatar
-                  src="/profile-image.jpg"
+                  src="/assets/Profile-icon.webp"
                   alt="Profile"
                   sx={{
                     width: 200,

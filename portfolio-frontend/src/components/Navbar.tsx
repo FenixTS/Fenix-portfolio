@@ -101,7 +101,7 @@ const Navbar = ({ onColorSchemeChange, onFontFamilyChange }: NavbarProps) => {
           onClick={() => navigate('/')}
         >
           <Avatar
-            src="/profile-image.jpg"
+            src="/assets/Profile-icon.webp"
             alt="Fenix T.S"
             sx={{
               width: 40,

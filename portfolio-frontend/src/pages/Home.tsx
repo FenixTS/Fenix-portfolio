@@ -1,6 +1,9 @@
 import { Box, Container, Typography, Button, Grid, Paper } from '@mui/material';
 import { motion } from 'framer-motion';
 import { useNavigate } from 'react-router-dom';
+import CodeIcon from '@mui/icons-material/Code';
+import PhoneAndroidIcon from '@mui/icons-material/PhoneAndroid';
+import StorageIcon from '@mui/icons-material/Storage';
 
 const Home = () => {
   const navigate = useNavigate();
@@ -27,16 +30,27 @@ const Home = () => {
                   WebkitTextFillColor: 'transparent',
                 }}
               >
-                Welcome to My Portfolio
+                Hi, I'm Fenix T.S
               </Typography>
               <Typography variant="h5" color="text.secondary" paragraph>
-                I'm a passionate developer crafting beautiful and functional web experiences
+                Full Stack Developer | MERN Stack Expert | Mobile Developer
+              </Typography>
+              <Typography variant="body1" color="text.secondary" paragraph>
+                Passionate about creating innovative solutions and transforming ideas into reality through code.
               </Typography>
               <Box sx={{ mt: 4, display: 'flex', gap: 2 }}>
                 <Button
                   variant="contained"
                   size="large"
                   onClick={() => navigate('/projects')}
+                  sx={{
+                    bgcolor: 'primary.main',
+                    '&:hover': {
+                      bgcolor: 'primary.dark',
+                      transform: 'translateY(-2px)',
+                    },
+                    transition: 'all 0.3s ease',
+                  }}
                 >
                   View Projects
                 </Button>
@@ -44,6 +58,16 @@ const Home = () => {
                   variant="outlined"
                   size="large"
                   onClick={() => navigate('/contact')}
+                  sx={{
+                    borderColor: 'primary.main',
+                    color: 'primary.main',
+                    '&:hover': {
+                      borderColor: 'primary.dark',
+                      bgcolor: 'rgba(0, 0, 0, 0.04)',
+                      transform: 'translateY(-2px)',
+                    },
+                    transition: 'all 0.3s ease',
+                  }}
                 >
                   Contact Me
                 </Button>
@@ -58,14 +82,16 @@ const Home = () => {
             >
               <Box
                 component="img"
-                src="/hero-image.svg"
-                alt="Hero Illustration"
+                src="/assets/Fenix-profile.JPG"
+                alt="Fenix T.S"
                 sx={{
                   width: '100%',
-                  maxWidth: 500,
+                  maxWidth: 400,
                   height: 'auto',
                   display: 'block',
                   margin: '0 auto',
+                  borderRadius: '9px',
+                  boxShadow: '0 8px 54px rgba(0,0,0,0.15)',
                 }}
               />
             </motion.div>
@@ -87,18 +113,18 @@ const Home = () => {
             {[
               {
                 title: 'Web Development',
-                description: 'Creating responsive and modern web applications using React and TypeScript',
-                icon: '🌐',
+                description: 'Building modern, responsive web applications using React, TypeScript, and Material-UI. Creating seamless user experiences with clean, maintainable code.',
+                icon: <CodeIcon sx={{ fontSize: 48, color: 'primary.main' }} />,
               },
               {
-                title: 'UI/UX Design',
-                description: 'Designing intuitive and beautiful user interfaces with Material-UI',
-                icon: '🎨',
+                title: 'Mobile Development',
+                description: 'Developing cross-platform mobile applications for iOS and Android using React Native. Delivering native-like performance and user experience.',
+                icon: <PhoneAndroidIcon sx={{ fontSize: 48, color: 'primary.main' }} />,
               },
               {
                 title: 'Backend Development',
-                description: 'Building robust server-side applications with Node.js and Express',
-                icon: '⚙️',
+                description: 'Architecting scalable server-side solutions with Node.js, Express, and MongoDB. Implementing robust APIs and database management systems.',
+                icon: <StorageIcon sx={{ fontSize: 48, color: 'primary.main' }} />,
               },
             ].map((item, index) => (
               <Grid item xs={12} md={4} key={index}>
@@ -116,15 +142,16 @@ const Home = () => {
                       flexDirection: 'column',
                       alignItems: 'center',
                       textAlign: 'center',
-                      transition: 'transform 0.3s ease-in-out',
+                      transition: 'all 0.3s ease-in-out',
                       '&:hover': {
                         transform: 'translateY(-8px)',
+                        boxShadow: 6,
                       },
                     }}
                   >
-                    <Typography variant="h1" sx={{ mb: 2 }}>
+                    <Box sx={{ mb: 2 }}>
                       {item.icon}
-                    </Typography>
+                    </Box>
                     <Typography variant="h5" component="h3" gutterBottom>
                       {item.title}
                     </Typography>
@@ -145,14 +172,26 @@ const Home = () => {
             py: 6,
             px: 4,
             borderRadius: 2,
-            background: 'linear-gradient(45deg, #2196f3 30%, #f50057 90%)',
+            background: 'linear-gradient(135deg, rgba(33, 150, 243, 0.9) 0%, rgba(245, 0, 87, 0.9) 100%)',
             color: 'white',
+            position: 'relative',
+            overflow: 'hidden',
+            '&::before': {
+              content: '""',
+              position: 'absolute',
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              background: 'url("/assets/pattern.png")',
+              opacity: 0.1,
+            },
           }}
         >
-          <Typography variant="h3" component="h2" gutterBottom>
+          <Typography variant="h3" component="h2" gutterBottom sx={{ position: 'relative' }}>
             Ready to Work Together?
           </Typography>
-          <Typography variant="h6" sx={{ mb: 4 }}>
+          <Typography variant="h6" sx={{ mb: 4, position: 'relative' }}>
             Let's create something amazing
           </Typography>
           <Button
@@ -162,9 +201,12 @@ const Home = () => {
             sx={{
               bgcolor: 'white',
               color: 'primary.main',
+              position: 'relative',
               '&:hover': {
                 bgcolor: 'grey.100',
+                transform: 'translateY(-2px)',
               },
+              transition: 'all 0.3s ease',
             }}
           >
             Get in Touch
