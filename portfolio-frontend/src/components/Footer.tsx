@@ -1,96 +1,145 @@
-import { Box, Container, Typography, IconButton, Link, useTheme } from '@mui/material';
-import GitHubIcon from '@mui/icons-material/GitHub';
+import React from 'react';
+import {
+  Box,
+  Container,
+  Grid,
+  Typography,
+  IconButton,
+  Link,
+  useTheme,
+  Divider,
+} from '@mui/material';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
+import TwitterIcon from '@mui/icons-material/Twitter';
 import EmailIcon from '@mui/icons-material/Email';
-import { motion } from 'framer-motion';
+import PhoneIcon from '@mui/icons-material/Phone';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
 const Footer = () => {
   const theme = useTheme();
-
-  const socialLinks = [
-    {
-      icon: <GitHubIcon />,
-      url: 'https://github.com/yourusername',
-      label: 'GitHub',
-    },
-    {
-      icon: <LinkedInIcon />,
-      url: 'https://linkedin.com/in/yourusername',
-      label: 'LinkedIn',
-    },
-    {
-      icon: <EmailIcon />,
-      url: 'mailto:your.email@example.com',
-      label: 'Email',
-    },
-  ];
+  const currentYear = new Date().getFullYear();
 
   return (
     <Box
       component="footer"
       sx={{
+        bgcolor: 'background.paper',
         py: 6,
-        px: 2,
         mt: 'auto',
-        backgroundColor: (theme) =>
-          theme.palette.mode === 'light'
-            ? theme.palette.grey[200]
-            : theme.palette.grey[800],
+        borderTop: `1px solid ${theme.palette.divider}`,
       }}
     >
       <Container maxWidth="lg">
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: 2,
-          }}
-        >
-          <Box
-            sx={{
-              display: 'flex',
-              gap: 2,
-              mb: 2,
-            }}
-          >
-            {socialLinks.map((link, index) => (
-              <motion.div
-                key={link.label}
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
+        <Grid container spacing={4}>
+          {/* Contact Information */}
+          <Grid item xs={12} sm={4}>
+            <Typography variant="h6" color="primary" gutterBottom>
+              Contact Info
+            </Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <EmailIcon color="primary" />
+                <Link href="mailto:your.email@example.com" color="inherit" underline="hover">
+                  your.email@example.com
+                </Link>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <PhoneIcon color="primary" />
+                <Typography>+1 234 567 8900</Typography>
+              </Box>
+              <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+                <LocationOnIcon color="primary" />
+                <Typography>Chennai, Tamil Nadu</Typography>
+              </Box>
+            </Box>
+          </Grid>
+
+          {/* Quick Links */}
+          <Grid item xs={12} sm={4}>
+            <Typography variant="h6" color="primary" gutterBottom>
+              Quick Links
+            </Typography>
+            <Box sx={{ display: 'flex', flexDirection: 'column', gap: 1 }}>
+              <Link href="/" color="inherit" underline="hover">
+                Home
+              </Link>
+              <Link href="/about" color="inherit" underline="hover">
+                About
+              </Link>
+              <Link href="/projects" color="inherit" underline="hover">
+                Projects
+              </Link>
+              <Link href="/contact" color="inherit" underline="hover">
+                Contact
+              </Link>
+            </Box>
+          </Grid>
+
+          {/* Social Links */}
+          <Grid item xs={12} sm={4}>
+            <Typography variant="h6" color="primary" gutterBottom>
+              Connect With Me
+            </Typography>
+            <Box sx={{ display: 'flex', gap: 2 }}>
+              <IconButton
+                href="https://linkedin.com/in/yourprofile"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  color: theme.palette.primary.main,
+                  '&:hover': {
+                    transform: 'translateY(-3px)',
+                    color: theme.palette.primary.dark,
+                  },
+                  transition: 'all 0.3s ease',
+                }}
               >
-                <IconButton
-                  component={Link}
-                  href={link.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label={link.label}
-                  color="primary"
-                  size="large"
-                >
-                  {link.icon}
-                </IconButton>
-              </motion.div>
-            ))}
-          </Box>
+                <LinkedInIcon />
+              </IconButton>
+              <IconButton
+                href="https://github.com/yourusername"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  color: theme.palette.primary.main,
+                  '&:hover': {
+                    transform: 'translateY(-3px)',
+                    color: theme.palette.primary.dark,
+                  },
+                  transition: 'all 0.3s ease',
+                }}
+              >
+                <GitHubIcon />
+              </IconButton>
+              <IconButton
+                href="https://twitter.com/yourhandle"
+                target="_blank"
+                rel="noopener noreferrer"
+                sx={{
+                  color: theme.palette.primary.main,
+                  '&:hover': {
+                    transform: 'translateY(-3px)',
+                    color: theme.palette.primary.dark,
+                  },
+                  transition: 'all 0.3s ease',
+                }}
+              >
+                <TwitterIcon />
+              </IconButton>
+            </Box>
+          </Grid>
+        </Grid>
 
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            align="center"
-            sx={{ mb: 1 }}
-          >
-            © {new Date().getFullYear()} Fenix T.S. All rights reserved.
+        <Divider sx={{ my: 4 }} />
+
+        {/* Copyright */}
+        <Box sx={{ textAlign: 'center' }}>
+          <Typography variant="body2" color="text.secondary">
+            © {currentYear} Your Name. All rights reserved.
           </Typography>
-
-          <Typography
-            variant="body2"
-            color="text.secondary"
-            align="center"
-            sx={{ maxWidth: '600px' }}
-          >
-            Built with React, TypeScript, and Material-UI. Hosted on Vercel.
+          <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
+            Made with ❤️ using React & Material-UI
           </Typography>
         </Box>
       </Container>

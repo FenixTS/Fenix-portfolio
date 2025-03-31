@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import {
   Container,
   Typography,
@@ -7,8 +7,9 @@ import {
   Paper,
   useTheme,
   useMediaQuery,
+  IconButton,
 } from '@mui/material';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useGSAP } from '@gsap/react';
 import gsap from 'gsap';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
@@ -16,6 +17,14 @@ import SchoolIcon from '@mui/icons-material/School';
 import WorkIcon from '@mui/icons-material/Work';
 import StarIcon from '@mui/icons-material/Star';
 import MilitaryTechIcon from '@mui/icons-material/MilitaryTech';
+import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import FiberManualRecordIcon from '@mui/icons-material/FiberManualRecord';
+import ZoomInIcon from '@mui/icons-material/ZoomIn';
+import ImageList from '@mui/material/ImageList';
+import ImageListItem from '@mui/material/ImageListItem';
+import Modal from '@mui/material/Modal';
+import CloseIcon from '@mui/icons-material/Close';
 
 interface Achievement {
   id: number;
@@ -84,10 +93,95 @@ const achievements: Achievement[] = [
   },
 ];
 
+// Slider images data
+const sliderImages = [
+  {
+    id: 1,
+    url: '/achievements/slide1.jpg',
+    title: 'Azure Certification',
+    description: 'Microsoft Azure Fundamentals Certification Achievement',
+  },
+  {
+    id: 2,
+    url: '/achievements/slide2.jpg',
+    title: 'Best Project Award',
+    description: 'Recognition for Outstanding Project Development',
+  },
+  {
+    id: 3,
+    url: '/achievements/slide3.jpg',
+    title: 'Training Excellence',
+    description: 'Successfully Trained 100+ Students in Full Stack Development',
+  },
+];
+
+// Photo gallery data
+const photoGallery = [
+  {
+    id: 1,
+    img: '/achievements/photos/photo1.jpg',
+    title: 'Award Ceremony',
+  },
+  {
+    id: 2,
+    img: '/achievements/photos/photo2.jpg',
+    title: 'Team Project',
+  },
+  {
+    id: 3,
+    img: '/achievements/photos/photo3.jpg',
+    title: 'Workshop',
+  },
+  {
+    id: 4,
+    img: '/achievements/photos/photo4.jpg',
+    title: 'Conference',
+  },
+  {
+    id: 5,
+    img: '/achievements/photos/photo5.jpg',
+    title: 'Certification',
+  },
+  {
+    id: 6,
+    img: '/achievements/photos/photo6.jpg',
+    title: 'Team Building',
+  },
+];
+
 const Achievements = () => {
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const achievementsRef = useRef(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [selectedPhoto, setSelectedPhoto] = useState<string | null>(null);
+
+  // Auto-play functionality
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (isAutoPlaying) {
+      interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
+      }, 5000); // Change slide every 5 seconds
+    }
+    return () => clearInterval(interval);
+  }, [isAutoPlaying]);
+
+  const handlePrevSlide = () => {
+    setIsAutoPlaying(false);
+    setCurrentSlide((prev) => (prev - 1 + sliderImages.length) % sliderImages.length);
+  };
+
+  const handleNextSlide = () => {
+    setIsAutoPlaying(false);
+    setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
+  };
+
+  const handleDotClick = (index: number) => {
+    setIsAutoPlaying(false);
+    setCurrentSlide(index);
+  };
 
   useGSAP(() => {
     gsap.from('.achievement-card', {
@@ -114,72 +208,160 @@ const Achievements = () => {
     }
   };
 
+  const handlePhotoClick = (img: string) => {
+    setSelectedPhoto(img);
+  };
+
+  const handleClosePhoto = () => {
+    setSelectedPhoto(null);
+  };
+
   return (
     <Box>
-      {/* Banner Section */}
-      <Box
-        sx={{
-          height: '300px',
-          background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-      >
-        <motion.div
-          initial={{ scale: 1.2 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1 }}
-          style={{
-            position: 'absolute',
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            background: 'url("/banner-pattern.svg")',
-            opacity: 0.1,
-          }}
-        />
-        <Container
+      {/* Image Slider Section */}
+      <Box sx={{ position: 'relative', width: '100%', height: '500px', overflow: 'hidden' }}>
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 0.5 }}
+            style={{
+              position: 'absolute',
+              width: '100%',
+              height: '100%',
+            }}
+          >
+            <Box
+              sx={{
+                width: '100%',
+                height: '100%',
+                position: 'relative',
+                '&::before': {
+                  content: '""',
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  right: 0,
+                  bottom: 0,
+                  background: 'linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7))',
+                  zIndex: 1,
+                },
+              }}
+            >
+              <Box
+                component="img"
+                src={sliderImages[currentSlide].url}
+                alt={sliderImages[currentSlide].title}
+                sx={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                }}
+              />
+              <Box
+                sx={{
+                  position: 'absolute',
+                  bottom: '80px',
+                  left: '50%',
+                  transform: 'translateX(-50%)',
+                  textAlign: 'center',
+                  zIndex: 2,
+                  width: '100%',
+                  px: 4,
+                }}
+              >
+                <Typography
+                  variant="h3"
+                  sx={{
+                    color: 'white',
+                    fontWeight: 'bold',
+                    mb: 2,
+                    textShadow: '2px 2px 4px rgba(0,0,0,0.5)',
+                  }}
+                >
+                  {sliderImages[currentSlide].title}
+                </Typography>
+                <Typography
+                  variant="h6"
+                  sx={{
+                    color: 'white',
+                    opacity: 0.9,
+                    textShadow: '1px 1px 2px rgba(0,0,0,0.5)',
+                  }}
+                >
+                  {sliderImages[currentSlide].description}
+                </Typography>
+              </Box>
+            </Box>
+          </motion.div>
+        </AnimatePresence>
+
+        {/* Navigation Arrows */}
+        <IconButton
+          onClick={handlePrevSlide}
           sx={{
-            height: '100%',
-            display: 'flex',
-            flexDirection: 'column',
-            justifyContent: 'center',
-            position: 'relative',
-            zIndex: 1,
+            position: 'absolute',
+            left: 20,
+            top: '50%',
+            transform: 'translateY(-50%)',
+            bgcolor: 'rgba(255,255,255,0.3)',
+            color: 'white',
+            zIndex: 2,
+            '&:hover': {
+              bgcolor: 'rgba(255,255,255,0.5)',
+            },
           }}
         >
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
-            <Typography
-              variant="h2"
+          <ArrowBackIosNewIcon />
+        </IconButton>
+        <IconButton
+          onClick={handleNextSlide}
+          sx={{
+            position: 'absolute',
+            right: 20,
+            top: '50%',
+            transform: 'translateY(-50%)',
+            bgcolor: 'rgba(255,255,255,0.3)',
+            color: 'white',
+            zIndex: 2,
+            '&:hover': {
+              bgcolor: 'rgba(255,255,255,0.5)',
+            },
+          }}
+        >
+          <ArrowForwardIosIcon />
+        </IconButton>
+
+        {/* Navigation Dots */}
+        <Box
+          sx={{
+            position: 'absolute',
+            bottom: 20,
+            left: '50%',
+            transform: 'translateX(-50%)',
+            display: 'flex',
+            gap: 1,
+            zIndex: 2,
+          }}
+        >
+          {sliderImages.map((_, index) => (
+            <IconButton
+              key={index}
+              onClick={() => handleDotClick(index)}
               sx={{
-                color: 'white',
-                fontWeight: 'bold',
-                mb: 2,
-                textAlign: { xs: 'center', sm: 'left' },
+                p: 0.5,
+                color: currentSlide === index ? 'white' : 'rgba(255,255,255,0.5)',
               }}
             >
-              Achievements
-            </Typography>
-            <Typography
-              variant="h6"
-              sx={{
-                color: 'white',
-                opacity: 0.9,
-                textAlign: { xs: 'center', sm: 'left' },
-              }}
-            >
-              Milestones and accomplishments in my professional journey
-            </Typography>
-          </motion.div>
-        </Container>
+              <FiberManualRecordIcon sx={{ fontSize: '0.8rem' }} />
+            </IconButton>
+          ))}
+        </Box>
       </Box>
 
-      <Container maxWidth="lg" sx={{ mt: -6, position: 'relative', zIndex: 2 }}>
+      <Container maxWidth="lg" sx={{ mt: 6, position: 'relative', zIndex: 2 }}>
         <Grid container spacing={3}>
           {achievements.map((achievement) => (
             <Grid item xs={12} sm={6} md={4} key={achievement.id}>
@@ -252,6 +434,142 @@ const Achievements = () => {
             </Grid>
           ))}
         </Grid>
+      </Container>
+
+      {/* Photo Gallery Section */}
+      <Container maxWidth="lg" sx={{ mt: 8, mb: 8 }}>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <Typography
+            variant="h4"
+            component="h2"
+            align="center"
+            sx={{
+              mb: 4,
+              fontWeight: 'bold',
+              background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+            }}
+          >
+            Photo Gallery
+          </Typography>
+
+          <ImageList
+            variant="masonry"
+            cols={isMobile ? 1 : 3}
+            gap={16}
+            sx={{ overflow: 'hidden' }}
+          >
+            {photoGallery.map((item) => (
+              <ImageListItem
+                key={item.id}
+                sx={{
+                  overflow: 'hidden',
+                  borderRadius: 2,
+                  cursor: 'pointer',
+                  '&:hover .overlay': {
+                    opacity: 1,
+                  },
+                  '&:hover img': {
+                    transform: 'scale(1.1)',
+                  },
+                }}
+                onClick={() => handlePhotoClick(item.img)}
+              >
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  loading="lazy"
+                  style={{
+                    borderRadius: '8px',
+                    transition: 'transform 0.3s ease-in-out',
+                  }}
+                />
+                <Box
+                  className="overlay"
+                  sx={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    bottom: 0,
+                    bgcolor: 'rgba(0, 0, 0, 0.5)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    opacity: 0,
+                    transition: 'opacity 0.3s ease',
+                  }}
+                >
+                  <IconButton
+                    sx={{
+                      color: 'white',
+                      '&:hover': {
+                        transform: 'scale(1.1)',
+                      },
+                    }}
+                  >
+                    <ZoomInIcon fontSize="large" />
+                  </IconButton>
+                </Box>
+              </ImageListItem>
+            ))}
+          </ImageList>
+        </motion.div>
+
+        {/* Photo Modal */}
+        <Modal
+          open={!!selectedPhoto}
+          onClose={handleClosePhoto}
+          sx={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            p: 2,
+          }}
+        >
+          <Box
+            sx={{
+              position: 'relative',
+              maxWidth: '90vw',
+              maxHeight: '90vh',
+              bgcolor: 'background.paper',
+              borderRadius: 2,
+              p: 1,
+              boxShadow: 24,
+            }}
+          >
+            <IconButton
+              onClick={handleClosePhoto}
+              sx={{
+                position: 'absolute',
+                right: -16,
+                top: -16,
+                bgcolor: 'background.paper',
+                boxShadow: 2,
+                '&:hover': {
+                  bgcolor: 'background.default',
+                },
+              }}
+            >
+              <CloseIcon />
+            </IconButton>
+            <img
+              src={selectedPhoto || ''}
+              alt="Achievement Photo"
+              style={{
+                maxWidth: '100%',
+                maxHeight: '85vh',
+                objectFit: 'contain',
+                borderRadius: '8px',
+              }}
+            />
+          </Box>
+        </Modal>
       </Container>
     </Box>
   );

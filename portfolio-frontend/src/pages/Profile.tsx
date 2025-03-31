@@ -40,7 +40,7 @@ const Profile = () => {
   }, []);
 
   return (
-    <Box sx={{ minHeight: '100vh', py: 8 }}>
+    <Box sx={{ minHeight: '100vh' }}>
       {/* Banner Section */}
       <Box
         sx={{
@@ -48,6 +48,7 @@ const Profile = () => {
           background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
           position: 'relative',
           overflow: 'hidden',
+          marginTop: '0px', // Adjust for AppBar height
         }}
       >
         <motion.div
@@ -74,6 +75,7 @@ const Profile = () => {
             mt: '-100px',
             position: 'relative',
             zIndex: 1,
+            pb: 8,
           }}
         >
           <Grid container spacing={4}>
