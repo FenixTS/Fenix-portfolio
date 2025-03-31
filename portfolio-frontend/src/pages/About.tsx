@@ -1,11 +1,38 @@
-import { Box, Container, Typography, Grid, Paper, Avatar, Chip } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Container, Typography, Grid, Paper, Avatar, Chip, Button, useTheme, useMediaQuery, Dialog, IconButton } from '@mui/material';
 import { motion } from 'framer-motion';
 import CodeIcon from '@mui/icons-material/Code';
 import SchoolIcon from '@mui/icons-material/School';
 import WorkIcon from '@mui/icons-material/Work';
 import InterestsIcon from '@mui/icons-material/Interests';
+import DownloadIcon from '@mui/icons-material/Download';
+import CloseIcon from '@mui/icons-material/Close';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
 
 const About = () => {
+  const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const [openResume, setOpenResume] = useState(false);
+
+  const handleOpenResume = () => {
+    setOpenResume(true);
+  };
+
+  const handleCloseResume = () => {
+    setOpenResume(false);
+  };
+
+  const handleDownloadResume = () => {
+    // Create a link element
+    const link = document.createElement('a');
+    link.href = '/resume.pdf';
+    link.download = 'FenixTS_Resume.pdf';
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
   const skills = [
     'React', 'TypeScript', 'Node.js', 'Express', 'MongoDB',
     'Material-UI', 'Git', 'Docker', 'AWS', 'REST APIs',
@@ -182,7 +209,145 @@ const About = () => {
             ))}
           </Grid>
         </Box>
+
+        {/* Resume Section */}
+        <Box sx={{ mt: 8 }}>
+          <Paper
+            elevation={3}
+            sx={{
+              p: 4,
+              background: `linear-gradient(135deg, ${theme.palette.background.paper} 0%, ${theme.palette.background.default} 100%)`,
+              borderRadius: 2,
+            }}
+          >
+            <Typography variant="h5" gutterBottom sx={{ mb: 3 }}>
+              My Resume
+            </Typography>
+            <Box
+              sx={{
+                display: 'flex',
+                gap: 2,
+                flexWrap: 'wrap',
+                justifyContent: 'center',
+              }}
+            >
+              <Button
+                variant="contained"
+                startIcon={<VisibilityIcon />}
+                onClick={handleOpenResume}
+                sx={{
+                  bgcolor: theme.palette.primary.main,
+                  color: 'white',
+                  '&:hover': {
+                    bgcolor: theme.palette.primary.dark,
+                    transform: 'translateY(-2px)',
+                  },
+                  transition: 'all 0.3s ease',
+                  px: 4,
+                  py: 1.5,
+                }}
+              >
+                View Resume
+              </Button>
+              <Button
+                variant="outlined"
+                startIcon={<DownloadIcon />}
+                onClick={handleDownloadResume}
+                sx={{
+                  borderColor: theme.palette.primary.main,
+                  color: theme.palette.primary.main,
+                  '&:hover': {
+                    borderColor: theme.palette.primary.dark,
+                    bgcolor: 'rgba(0, 0, 0, 0.04)',
+                    transform: 'translateY(-2px)',
+                  },
+                  transition: 'all 0.3s ease',
+                  px: 4,
+                  py: 1.5,
+                }}
+              >
+                Download Resume
+              </Button>
+            </Box>
+          </Paper>
+        </Box>
       </Container>
+
+      {/* Resume Dialog */}
+      <Dialog
+        fullScreen
+        open={openResume}
+        onClose={handleCloseResume}
+        sx={{
+          '& .MuiDialog-paper': {
+            bgcolor: 'background.default',
+          },
+        }}
+      >
+        <Box sx={{ p: 2, display: 'flex', justifyContent: 'flex-end' }}>
+          <IconButton
+            edge="end"
+            color="inherit"
+            onClick={handleCloseResume}
+            aria-label="close"
+          >
+            <CloseIcon />
+          </IconButton>
+        </Box>
+        <Box
+          sx={{
+            width: '100%',
+            height: '100%',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            p: 2,
+          }}
+        >
+          <Box
+            sx={{
+              width: '100%',
+              maxWidth: '850px',
+              height: 'calc(100vh - 100px)',
+              overflow: 'hidden',
+              borderRadius: 2,
+              boxShadow: 3,
+            }}
+          >
+            <object
+              data="/resume.pdf"
+              type="application/pdf"
+              width="100%"
+              height="100%"
+              style={{ border: 'none' }}
+            >
+              <Box
+                sx={{
+                  p: 4,
+                  textAlign: 'center',
+                  bgcolor: 'background.paper',
+                  borderRadius: 2,
+                }}
+              >
+                <PictureAsPdfIcon sx={{ fontSize: 48, color: 'error.main', mb: 2 }} />
+                <Typography variant="h6" gutterBottom>
+                  Unable to display PDF
+                </Typography>
+                <Typography color="text.secondary" paragraph>
+                  Your browser doesn't support PDF preview.
+                </Typography>
+                <Button
+                  variant="contained"
+                  startIcon={<DownloadIcon />}
+                  onClick={handleDownloadResume}
+                >
+                  Download Instead
+                </Button>
+              </Box>
+            </object>
+          </Box>
+        </Box>
+      </Dialog>
     </Box>
   );
 };
