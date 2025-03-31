@@ -18,6 +18,7 @@ import {
   Menu,
   MenuItem,
   ListItemIcon,
+  useMediaQuery,
 } from '@mui/material';
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import ThumbDownIcon from '@mui/icons-material/ThumbDown';
@@ -42,6 +43,8 @@ interface Comment {
 
 const VideoInteractions = () => {
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
+  const isTablet = useMediaQuery(theme.breakpoints.down('md'));
   const [likes, setLikes] = useState(0);
   const [dislikes, setDislikes] = useState(0);
   const [showComments, setShowComments] = useState(false);
@@ -134,11 +137,14 @@ const VideoInteractions = () => {
       <Box
         sx={{
           display: 'flex',
-          alignItems: 'center',
+          flexDirection: { xs: 'column', sm: 'row' },
+          alignItems: { xs: 'flex-start', sm: 'center' },
           justifyContent: 'space-between',
+          gap: { xs: 2, sm: 0 },
           mb: 2,
         }}
       >
+        {/* Like/Dislike Section */}
         <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
           <motion.div
             whileHover={{ scale: 1.1 }}
@@ -180,8 +186,26 @@ const VideoInteractions = () => {
           </Typography>
         </Box>
 
-        <Box sx={{ display: 'flex', alignItems: 'center', gap: 2 }}>
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 3 }}>
+        {/* Stats and Actions Section */}
+        <Box 
+          sx={{ 
+            display: 'flex', 
+            flexDirection: { xs: 'column', sm: 'row' },
+            alignItems: { xs: 'flex-start', sm: 'center' },
+            gap: { xs: 2, sm: 3 },
+            width: { xs: '100%', sm: 'auto' },
+            justifyContent: { xs: 'space-between', sm: 'flex-end' },
+          }}
+        >
+          {/* View Stats */}
+          <Box 
+            sx={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: { xs: 2, sm: 3 },
+              flexWrap: 'wrap',
+            }}
+          >
             <Tooltip title="Current Viewers">
               <Box
                 sx={{
@@ -214,7 +238,15 @@ const VideoInteractions = () => {
             </Tooltip>
           </Box>
 
-          <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
+          {/* Social Actions */}
+          <Box 
+            sx={{ 
+              display: 'flex', 
+              alignItems: 'center', 
+              gap: 1,
+              flexWrap: 'wrap',
+            }}
+          >
             <motion.div
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.95 }}
@@ -273,6 +305,7 @@ const VideoInteractions = () => {
             </motion.div>
           </Box>
 
+          {/* Comments Button */}
           <motion.div
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
@@ -294,6 +327,8 @@ const VideoInteractions = () => {
                 '&:hover': {
                   boxShadow: theme.shadows[4],
                 },
+                width: { xs: '100%', sm: 'auto' },
+                mt: { xs: 1, sm: 0 },
               }}
             >
               {showComments ? 'Hide Comments' : 'Show Comments'}
@@ -346,7 +381,7 @@ const VideoInteractions = () => {
               sx={{
                 p: 2,
                 mt: 2,
-                maxHeight: '400px',
+                maxHeight: { xs: '60vh', sm: '400px' },
                 overflow: 'auto',
                 backgroundColor: theme.palette.background.default,
               }}

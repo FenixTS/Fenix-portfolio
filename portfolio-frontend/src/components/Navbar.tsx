@@ -9,12 +9,22 @@ import {
   Menu,
   MenuItem,
   useTheme,
+  useMediaQuery,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
 } from '@mui/material';
-import { useNavigate, useLocation } from 'react-router-dom';
 import MenuIcon from '@mui/icons-material/Menu';
-import PaletteIcon from '@mui/icons-material/Palette';
-import FontDownloadIcon from '@mui/icons-material/FontDownload';
-import { motion } from 'framer-motion';
+import HomeIcon from '@mui/icons-material/Home';
+import PersonIcon from '@mui/icons-material/Person';
+import CodeIcon from '@mui/icons-material/Code';
+import SchoolIcon from '@mui/icons-material/School';
+import WorkIcon from '@mui/icons-material/Work';
+import ContactMailIcon from '@mui/icons-material/ContactMail';
+import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 interface NavbarProps {
   onColorSchemeChange: (scheme: string) => void;
@@ -23,59 +33,57 @@ interface NavbarProps {
 
 const Navbar = ({ onColorSchemeChange, onFontFamilyChange }: NavbarProps) => {
   const theme = useTheme();
+  const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
   const navigate = useNavigate();
   const location = useLocation();
-  const [mobileMenuAnchor, setMobileMenuAnchor] = useState<null | HTMLElement>(null);
-  const [colorMenuAnchor, setColorMenuAnchor] = useState<null | HTMLElement>(null);
-  const [fontMenuAnchor, setFontMenuAnchor] = useState<null | HTMLElement>(null);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-  const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setMobileMenuAnchor(event.currentTarget);
+  const menuItems = [
+    { text: 'Home', icon: <HomeIcon />, path: '/' },
+    { text: 'Profile', icon: <PersonIcon />, path: '/profile' },
+    { text: 'Projects', icon: <CodeIcon />, path: '/projects' },
+    { text: 'Experience', icon: <WorkIcon />, path: '/experience' },
+    { text: 'Skills', icon: <SchoolIcon />, path: '/skills' },
+    { text: 'Achievements', icon: <EmojiEventsIcon />, path: '/achievements' },
+    { text: 'Contact', icon: <ContactMailIcon />, path: '/contact' },
+  ];
+
+  const handleDrawerToggle = () => {
+    setMobileOpen(!mobileOpen);
   };
 
-  const handleColorMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setColorMenuAnchor(event.currentTarget);
-  };
-
-  const handleFontMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
-    setFontMenuAnchor(event.currentTarget);
+  const handleMenuClick = (event: React.MouseEvent<HTMLElement>) => {
+    setAnchorEl(event.currentTarget);
   };
 
   const handleMenuClose = () => {
-    setMobileMenuAnchor(null);
-    setColorMenuAnchor(null);
-    setFontMenuAnchor(null);
+    setAnchorEl(null);
   };
 
   const handleNavigation = (path: string) => {
     navigate(path);
+    setMobileOpen(false);
     handleMenuClose();
   };
 
-  const navItems = [
-    { label: 'Profile', path: '/' },
-    { label: 'Experience', path: '/experience' },
-    { label: 'Skills', path: '/skills' },
-    { label: 'Projects', path: '/projects' },
-    { label: 'Certifications', path: '/certifications' },
-    { label: 'Contact', path: '/contact' },
-  ];
-
-  const colorSchemes = [
-    { label: 'Default', value: 'default' },
-    { label: 'Dark', value: 'dark' },
-    { label: 'Ocean', value: 'ocean' },
-    { label: 'Forest', value: 'forest' },
-    { label: 'Sunset', value: 'sunset' },
-  ];
-
-  const fontFamilies = [
-    { label: 'Default', value: 'default' },
-    { label: 'Elegant', value: 'elegant' },
-    { label: 'Modern', value: 'modern' },
-    { label: 'Classic', value: 'classic' },
-    { label: 'Clean', value: 'clean' },
-  ];
+  const drawer = (
+    <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
+      <List>
+        {menuItems.map((item) => (
+          <ListItem
+            button
+            key={item.text}
+            onClick={() => handleNavigation(item.path)}
+            selected={location.pathname === item.path}
+          >
+            <ListItemIcon>{item.icon}</ListItemIcon>
+            <ListItemText primary={item.text} />
+          </ListItem>
+        ))}
+      </List>
+    </Box>
+  );
 
   return (
     <AppBar position="sticky" color="default" elevation={1}>
@@ -84,125 +92,72 @@ const Navbar = ({ onColorSchemeChange, onFontFamilyChange }: NavbarProps) => {
           variant="h6"
           component="div"
           sx={{ flexGrow: 1, cursor: 'pointer' }}
-          onClick={() => handleNavigation('/')}
+          onClick={() => navigate('/')}
         >
-          Fenix T.S
+          Portfolio
         </Typography>
 
-        {/* Desktop Navigation */}
-        <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 2 }}>
-          {navItems.map((item) => (
-            <Button
-              key={item.path}
+        {isMobile ? (
+          <>
+            <IconButton
               color="inherit"
-              onClick={() => handleNavigation(item.path)}
+              aria-label="open drawer"
+              edge="start"
+              onClick={handleDrawerToggle}
+            >
+              <MenuIcon />
+            </IconButton>
+            <Drawer
+              variant="temporary"
+              anchor="right"
+              open={mobileOpen}
+              onClose={handleDrawerToggle}
+              ModalProps={{
+                keepMounted: true, // Better open performance on mobile.
+              }}
               sx={{
-                position: 'relative',
-                '&::after': {
-                  content: '""',
-                  position: 'absolute',
-                  bottom: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '2px',
-                  backgroundColor: theme.palette.primary.main,
-                  transform: location.pathname === item.path ? 'scaleX(1)' : 'scaleX(0)',
-                  transition: 'transform 0.3s ease-in-out',
-                },
-                '&:hover::after': {
-                  transform: 'scaleX(1)',
+                display: { xs: 'block', sm: 'none' },
+                '& .MuiDrawer-paper': {
+                  boxSizing: 'border-box',
+                  width: 240,
                 },
               }}
             >
-              {item.label}
-            </Button>
-          ))}
-        </Box>
-
-        {/* Theme and Font Controls */}
-        <Box sx={{ display: { xs: 'none', md: 'flex' }, gap: 1 }}>
-          <IconButton
-            color="inherit"
-            onClick={handleColorMenuOpen}
-            size="large"
-          >
-            <PaletteIcon />
-          </IconButton>
-          <IconButton
-            color="inherit"
-            onClick={handleFontMenuOpen}
-            size="large"
-          >
-            <FontDownloadIcon />
-          </IconButton>
-        </Box>
-
-        {/* Mobile Menu Button */}
-        <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
-          <IconButton
-            color="inherit"
-            onClick={handleMobileMenuOpen}
-            size="large"
-          >
-            <MenuIcon />
-          </IconButton>
-        </Box>
+              {drawer}
+            </Drawer>
+          </>
+        ) : (
+          <Box sx={{ display: 'flex', gap: 1 }}>
+            {menuItems.map((item) => (
+              <Button
+                key={item.text}
+                color="inherit"
+                startIcon={item.icon}
+                onClick={() => handleNavigation(item.path)}
+                sx={{
+                  position: 'relative',
+                  '&::after': {
+                    content: '""',
+                    position: 'absolute',
+                    bottom: 0,
+                    left: '50%',
+                    width: location.pathname === item.path ? '100%' : '0%',
+                    height: '2px',
+                    backgroundColor: theme.palette.primary.main,
+                    transition: 'all 0.3s ease',
+                    transform: 'translateX(-50%)',
+                  },
+                  '&:hover::after': {
+                    width: '100%',
+                  },
+                }}
+              >
+                {item.text}
+              </Button>
+            ))}
+          </Box>
+        )}
       </Toolbar>
-
-      {/* Mobile Menu */}
-      <Menu
-        anchorEl={mobileMenuAnchor}
-        open={Boolean(mobileMenuAnchor)}
-        onClose={handleMenuClose}
-      >
-        {navItems.map((item) => (
-          <MenuItem
-            key={item.path}
-            onClick={() => handleNavigation(item.path)}
-            selected={location.pathname === item.path}
-          >
-            {item.label}
-          </MenuItem>
-        ))}
-      </Menu>
-
-      {/* Color Scheme Menu */}
-      <Menu
-        anchorEl={colorMenuAnchor}
-        open={Boolean(colorMenuAnchor)}
-        onClose={handleMenuClose}
-      >
-        {colorSchemes.map((scheme) => (
-          <MenuItem
-            key={scheme.value}
-            onClick={() => {
-              onColorSchemeChange(scheme.value);
-              handleMenuClose();
-            }}
-          >
-            {scheme.label}
-          </MenuItem>
-        ))}
-      </Menu>
-
-      {/* Font Family Menu */}
-      <Menu
-        anchorEl={fontMenuAnchor}
-        open={Boolean(fontMenuAnchor)}
-        onClose={handleMenuClose}
-      >
-        {fontFamilies.map((font) => (
-          <MenuItem
-            key={font.value}
-            onClick={() => {
-              onFontFamilyChange(font.value);
-              handleMenuClose();
-            }}
-          >
-            {font.label}
-          </MenuItem>
-        ))}
-      </Menu>
     </AppBar>
   );
 };

@@ -1,64 +1,32 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import { ThemeProvider } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import { createCustomTheme, colorSchemes, fontFamilies } from './styles/theme';
-import { useState } from 'react';
-import { Box } from '@mui/material';
-
-// Pages
-import Profile from './pages/Profile';
+import { ThemeProvider, CssBaseline } from '@mui/material';
+import { theme } from './theme';
+import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import About from './pages/About';
+import Projects from './pages/Projects';
 import Contact from './pages/Contact';
 import Experience from './pages/Experience';
-import Projects from './pages/Projects';
-import Certifications from './pages/Certifications';
+import Profile from './pages/Profile';
 import Skills from './pages/Skills';
-import Admin from './pages/Admin';
-
-// Components
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
+import Achievements from './pages/Achievements';
 
 function App() {
-  const [colorScheme, setColorScheme] = useState<keyof typeof colorSchemes>('default');
-  const [fontFamily, setFontFamily] = useState<keyof typeof fontFamilies>('default');
-
-  const theme = createCustomTheme(colorScheme, fontFamily);
-
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Router>
-        <Box
-          sx={{
-            display: 'flex',
-            flexDirection: 'column',
-            minHeight: '100vh',
-          }}
-        >
-          <Navbar 
-            onColorSchemeChange={setColorScheme}
-            onFontFamilyChange={setFontFamily}
-          />
-          <Box
-            component="main"
-            sx={{
-              flexGrow: 1,
-              py: 4,
-              px: 2,
-            }}
-          >
-            <Routes>
-              <Route path="/" element={<Profile />} />
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/experience" element={<Experience />} />
-              <Route path="/projects" element={<Projects />} />
-              <Route path="/certifications" element={<Certifications />} />
-              <Route path="/skills" element={<Skills />} />
-              <Route path="/admin" element={<Admin />} />
-            </Routes>
-          </Box>
-          <Footer />
-        </Box>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/experience" element={<Experience />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/skills" element={<Skills />} />
+          <Route path="/achievements" element={<Achievements />} />
+        </Routes>
       </Router>
     </ThemeProvider>
   );
