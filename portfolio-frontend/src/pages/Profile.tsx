@@ -15,6 +15,8 @@ import gsap from 'gsap';
 import DownloadIcon from '@mui/icons-material/Download';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import GitHubIcon from '@mui/icons-material/GitHub';
+import TechStack from '../components/TechStack';
+import VideoInteractions from '../components/VideoInteractions';
 
 const Profile = () => {
   const theme = useTheme();
@@ -22,7 +24,7 @@ const Profile = () => {
   const profileRef = useRef(null);
 
   useGSAP(() => {
-    gsap.from(profileRef.current, {
+    gsap.from('.profile-content', {
       duration: 1,
       y: 50,
       opacity: 0,
@@ -31,150 +33,132 @@ const Profile = () => {
   }, []);
 
   return (
-    <Container maxWidth="lg" sx={{ py: { xs: 4, md: 8 } }}>
-      <Box ref={profileRef}>
-        <Grid container spacing={4}>  
-          {/* Left Column - Profile Image and Social Links */}
-          <Grid item xs={12} md={6}>
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
-            >
-              <Paper
-                elevation={3}
-                sx={{
-                  p: 2,
-                  mb: 3,
-                  backgroundColor: theme.palette.background.paper,
-                  '&:hover': {
-                    transform: 'translateY(-5px)',
-                    transition: 'transform 0.3s ease-in-out',
-                  },
+    <Box>
+      {/* Banner Section */}
+      <Box
+        sx={{
+          height: '300px',
+          background: `linear-gradient(45deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        <motion.div
+          initial={{ scale: 1.2 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1 }}
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            right: 0,
+            bottom: 0,
+            background: 'url("/banner-pattern.svg")',
+            opacity: 0.1,
+          }}
+        />
+      </Box>
+
+      <Container maxWidth="lg">
+        {/* Profile Section */}
+        <Box
+          className="profile-content"
+          sx={{
+            mt: '-100px',
+            position: 'relative',
+            zIndex: 1,
+          }}
+        >
+          <Grid container spacing={4}>
+            {/* Profile Picture */}
+            <Grid item xs={12} md={4}>
+              <motion.div
+                initial={{ scale: 0 }}
+                animate={{ scale: 1 }}
+                transition={{ duration: 0.5 }}
+                style={{
+                  display: 'flex',
+                  justifyContent: 'center',
                 }}
               >
                 <Box
                   sx={{
-                    position: 'relative',
-                    width: '100%',
-                    paddingTop: '100%', // 1:1 Aspect Ratio for profile image
-                    backgroundColor: theme.palette.grey[200],
-                    borderRadius: 1,
+                    width: 200,
+                    height: 200,
+                    borderRadius: '50%',
                     overflow: 'hidden',
-                    mb: 2,
+                    border: `4px solid ${theme.palette.background.paper}`,
+                    boxShadow: theme.shadows[4],
                   }}
                 >
-                  <img
+                  <Box
+                    component="img"
                     src="/profile.jpg"
-                    alt="Fenix T.S"
-                    style={{
-                      position: 'absolute',
-                      top: 0,
-                      left: 0,
+                    alt="Profile"
+                    sx={{
                       width: '100%',
                       height: '100%',
                       objectFit: 'cover',
                     }}
                   />
                 </Box>
-                <Box sx={{ display: 'flex', gap: 2 }}>
-                  <Button
-                    variant="contained"
-                    startIcon={<LinkedInIcon />}
-                    href="https://linkedin.com/in/your-profile"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    fullWidth
-                  >
-                    LinkedIn
-                  </Button>
-                  <Button
-                    variant="contained"
-                    startIcon={<GitHubIcon />}
-                    href="https://github.com/your-profile"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    fullWidth
-                  >
-                    GitHub
-                  </Button>
-                </Box>
+              </motion.div>
+            </Grid>
+
+            {/* Profile Info */}
+            <Grid item xs={12} md={8}>
+              <Paper
+                elevation={3}
+                sx={{
+                  p: 4,
+                  height: '100%',
+                }}
+              >
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <Typography variant="h4" gutterBottom>
+                    Your Name
+                  </Typography>
+                  <Typography variant="h6" color="primary" gutterBottom>
+                    Full Stack Developer
+                  </Typography>
+                  <Typography variant="body1" paragraph>
+                    Passionate developer with expertise in building modern web applications.
+                    Experienced in full-stack development with a focus on creating scalable
+                    and maintainable solutions.
+                  </Typography>
+                </motion.div>
               </Paper>
-            </motion.div>
+            </Grid>
           </Grid>
 
-          {/* Right Column - Bio and Video */}
-          <Grid item xs={12} md={6}>
+          {/* Self Introduction Video Section */}
+          <Box sx={{ mt: 6 }}>
             <motion.div
-              initial={{ opacity: 0, x: 50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 }}
             >
               <Paper
                 elevation={3}
                 sx={{
-                  p: { xs: 2, sm: 3 },
-                  mb: 3,
+                  p: 3,
                   backgroundColor: theme.palette.background.paper,
-                  '&:hover': {
-                    transform: 'translateY(-5px)',
-                    transition: 'transform 0.3s ease-in-out',
-                  },
                 }}
               >
-                <Typography
-                  variant="h4"
-                  gutterBottom
-                  sx={{
-                    fontSize: { xs: '1.75rem', sm: '2rem' },
-                    fontWeight: 'bold',
-                  }}
-                >
-                  Fenix T.S
-                </Typography>
-                <Typography
-                  variant="h6"
-                  color="primary"
-                  gutterBottom
-                  sx={{
-                    fontSize: { xs: '1.1rem', sm: '1.25rem' },
-                  }}
-                >
-                  Full Stack Developer
-                </Typography>
-                <Typography
-                  variant="body1"
-                  paragraph
-                  sx={{
-                    fontSize: { xs: '0.875rem', sm: '1rem' },
-                    lineHeight: 1.8,
-                  }}
-                >
-                  I am a passionate Full Stack Developer with expertise in building modern web applications.
-                  With a strong foundation in both frontend and backend technologies, I create scalable
-                  and efficient solutions that solve real-world problems.
-                </Typography>
-                <Button
-                  variant="contained"
-                  startIcon={<DownloadIcon />}
-                  href="/path-to-your-resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  sx={{ mb: 3 }}
-                >
-                  Download Resume
-                </Button>
-
                 <Typography
                   variant="h5"
                   gutterBottom
                   sx={{
-                    fontSize: { xs: '1.25rem', sm: '1.5rem' },
-                    fontWeight: 'bold',
                     color: theme.palette.primary.main,
+                    fontWeight: 'bold',
+                    mb: 3,
                   }}
                 >
-                  Self Intro
+                  Self Introduction
                 </Typography>
                 <Box
                   sx={{
@@ -184,6 +168,7 @@ const Profile = () => {
                     backgroundColor: theme.palette.grey[200],
                     borderRadius: 1,
                     overflow: 'hidden',
+                    boxShadow: theme.shadows[2],
                   }}
                 >
                   <video
@@ -196,17 +181,24 @@ const Profile = () => {
                       height: '100%',
                       objectFit: 'cover',
                     }}
-                    src="/path-to-your-video.mp4"
+                    src="/self-intro.mp4"
+                    poster="/video-thumbnail.jpg"
                   >
                     Your browser does not support the video tag.
                   </video>
                 </Box>
+                <VideoInteractions />
               </Paper>
             </motion.div>
-          </Grid>
-        </Grid>
-      </Box>
-    </Container>
+          </Box>
+
+          {/* Tech Stack Section */}
+          <Box sx={{ mt: 6 }}>
+            <TechStack />
+          </Box>
+        </Box>
+      </Container>
+    </Box>
   );
 };
 
