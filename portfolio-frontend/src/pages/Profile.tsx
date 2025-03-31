@@ -135,6 +135,78 @@ const Profile = () => {
             </Grid>
           </Grid>
 
+          {/* About Section */}
+          <Box sx={{ mt: 6 }}>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3 }}
+            >
+              <Paper
+                elevation={3}
+                sx={{
+                  p: 4,
+                  backgroundColor: theme.palette.background.paper,
+                  position: 'relative',
+                  overflow: 'hidden',
+                  '&::before': {
+                    content: '""',
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    right: 0,
+                    height: '4px',
+                    background: `linear-gradient(90deg, ${theme.palette.primary.main}, ${theme.palette.secondary.main})`,
+                  },
+                }}
+              >
+                <Typography
+                  variant="h5"
+                  gutterBottom
+                  sx={{
+                    color: theme.palette.primary.main,
+                    fontWeight: 'bold',
+                    mb: 3,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 1,
+                  }}
+                >
+                  About Me
+                </Typography>
+                <Typography
+                  variant="body1"
+                  paragraph
+                  sx={{
+                    lineHeight: 1.8,
+                    fontSize: { xs: '0.95rem', sm: '1rem' },
+                  }}
+                >
+                  I am a passionate MERN Stack Developer & Full Stack Trainer with a strong foundation in both front-end and back-end technologies. With expertise in React.js, Node.js, Express.js, and MongoDB, I specialize in building dynamic and scalable web applications. Additionally, I have hands-on experience deploying applications on Microsoft Azure and hold an AZ-900 certification.
+                </Typography>
+                <Typography
+                  variant="body1"
+                  paragraph
+                  sx={{
+                    lineHeight: 1.8,
+                    fontSize: { xs: '0.95rem', sm: '1rem' },
+                  }}
+                >
+                  Beyond development, I am dedicated to mentoring and training aspiring developers, guiding them in full-stack development, real-world project execution, and industry best practices. My experience spans freelance projects, software training, and cloud-based application development, ensuring both technical excellence and impactful learning experiences.
+                </Typography>
+                <Typography
+                  variant="body1"
+                  sx={{
+                    lineHeight: 1.8,
+                    fontSize: { xs: '0.95rem', sm: '1rem' },
+                  }}
+                >
+                  Driven by problem-solving and innovation, I constantly explore new technologies to enhance efficiency and user experiences in web applications.
+                </Typography>
+              </Paper>
+            </motion.div>
+          </Box>
+
           {/* Self Introduction Video Section */}
           <Box sx={{ mt: 6 }}>
             <motion.div
