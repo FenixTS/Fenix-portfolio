@@ -9,26 +9,35 @@ import StarIcon from '@mui/icons-material/Star';
 const Education = () => {
   const academicBackground = [
     {
-      degree: 'Bachelor of Science in Computer Science',
-      school: 'University Name',
-      period: '2014 - 2018',
-      description: 'Graduated with honors, specialized in Software Engineering',
+      degree: 'Bachelor of Engineering in Mechanical Engineering',
+      school: 'Anna University',
+      period: '2018 - 2022',
+      description: 'Transitioned from Mechanical Engineering to IT, leveraging problem-solving skills and analytical thinking to excel in software development. Completed various programming certifications and projects to build expertise in full-stack development.',
       achievements: [
-        'GPA: 3.8/4.0',
-        'Dean\'s List all semesters',
-        'Led the University\'s Programming Club',
-        'Published research paper on AI applications'
+        'CGPA: 8.01/10',
+      
+        
+    
       ]
     },
     {
-      degree: 'High School Diploma',
-      school: 'High School Name',
-      period: '2010 - 2014',
-      description: 'Focus on Mathematics and Computer Science',
+      degree: 'Hr. Sec School',
+      school: 'Christucoil LMS Hr. Sec School',
+      period: '2017 - 2018',
+      description: 'Focus on Mathematics',
       achievements: [
-        'Valedictorian',
-        'National Science Olympiad Winner',
-        'Captain of the Robotics Team'
+        'Percentage: 53%',
+        'State Board'
+      ]
+    },
+    {
+      degree: 'SSLC',
+      school: 'AG Matriculation School',
+      period: '2015 - 2016',
+      description: 'Completed secondary education with strong academic performance, focusing on core subjects including Mathematics, Science and English',
+      achievements: [
+        'Percentage: 87%',
+        'State Board' 
       ]
     }
   ];

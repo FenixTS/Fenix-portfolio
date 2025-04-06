@@ -97,19 +97,19 @@ const achievements: Achievement[] = [
 const sliderImages = [
   {
     id: 1,
-    url: '/achievements/slide1.jpg',
+    url: '/assets/images/Certification.jpg',
     title: 'Azure Certification',
     description: 'Microsoft Azure Fundamentals Certification Achievement',
   },
   {
     id: 2,
-    url: '/achievements/slide2.jpg',
+    url: '/assets/images/Award.jpg',
     title: 'Best Project Award',
     description: 'Recognition for Outstanding Project Development',
   },
   {
     id: 3,
-    url: '/achievements/slide3.jpg',
+    url: '/assets/images/Trainer_pic_1.jpg',
     title: 'Training Excellence',
     description: 'Successfully Trained 100+ Students in Full Stack Development',
   },
@@ -119,34 +119,49 @@ const sliderImages = [
 const photoGallery = [
   {
     id: 1,
-    img: '/achievements/photos/photo1.jpg',
+    img: '/assets/images/SSF_Recognition_2.JPG',
     title: 'Award Ceremony',
   },
   {
     id: 2,
-    img: '/achievements/photos/photo2.jpg',
+    img: '/assets/images/TeamProject.png',
     title: 'Team Project',
   },
   {
     id: 3,
-    img: '/achievements/photos/photo3.jpg',
+    img: '/assets/images/Workshop.png',
     title: 'Workshop',
   },
   {
     id: 4,
-    img: '/achievements/photos/photo4.jpg',
+    img: '/assets/images/Students.png',
     title: 'Conference',
   },
   {
     id: 5,
-    img: '/achievements/photos/photo5.jpg',
+    img: '/assets/images/Certification_2.jpg',
     title: 'Certification',
   },
   {
     id: 6,
-    img: '/achievements/photos/photo6.jpg',
+    img: '/assets/images/INN&SSF_Team_2.JPG',
     title: 'Team Building',
   },
+  {
+    id: 7,
+    img: '/assets/images/INN&SSF_Team_3.JPG',
+    title: 'Team Building',
+  },
+    {
+      id:8 ,
+      img: '/assets/images/INN_Team.JPG',
+      title: 'Team',
+    },
+    {
+      id:9 ,
+      img: '/assets/images/Guide.png',
+      title: 'Guide',
+    },
 ];
 
 const Achievements = () => {
@@ -163,7 +178,7 @@ const Achievements = () => {
     if (isAutoPlaying) {
       interval = setInterval(() => {
         setCurrentSlide((prev) => (prev + 1) % sliderImages.length);
-      }, 5000); // Change slide every 5 seconds
+      }, 3000); // Change slide every 5 seconds
     }
     return () => clearInterval(interval);
   }, [isAutoPlaying]);

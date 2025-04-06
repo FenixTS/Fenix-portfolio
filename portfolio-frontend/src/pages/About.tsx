@@ -16,7 +16,7 @@ const About = () => {
   const [openResume, setOpenResume] = useState(false);
 
   const handleOpenResume = () => {
-    setOpenResume(true);
+    window.open('/assets/files/Fenix-Resume.pdf', '_blank');
   };
 
   const handleCloseResume = () => {
@@ -27,39 +27,67 @@ const About = () => {
     // Create a link element
     const link = document.createElement('a');
     link.href = '/assets/files/Fenix-Resume.pdf';
-    link.download = '/assets/files/Fenix-Resume.pdf';
+    link.download = 'Fenix-Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
   };
 
   const skills = [
-    'React', 'TypeScript', 'Node.js', 'Express', 'MongoDB',
-    'Material-UI', 'Git', 'Docker', 'AWS', 'REST APIs',
-    'GraphQL', 'Jest', 'CI/CD', 'Agile', 'UI/UX Design'
+    {
+      category: 'Frontend',
+      items: ['React', 'TypeScript', 'Material-UI', 'HTML/CSS', 'JavaScript']
+    },
+    {
+      category: 'Backend',
+      items: ['Node.js', 'Express', 'MongoDB', 'REST APIs', 'GraphQL']
+    },
+    {
+      category: 'DevOps & Tools',
+      items: ['Git', 'Docker', 'AWS', 'Azure', 'CI/CD']
+    },
+    {
+      category: 'Mobile',
+      items: ['React Native', 'iOS Development', 'Android Development']
+    }
   ];
 
   const experiences = [
     {
-      title: 'Senior Full Stack Developer',
-      company: 'Tech Company',
-      period: '2020 - Present',
-      description: 'Leading development of enterprise applications using React and Node.js'
+      title: 'Full Stack Developer & MERN Stack Trainer',
+      company: 'Freelance',
+      period: '2022 - Present',
+      description: 'Developing and maintaining web applications using MERN stack. Training aspiring developers in full-stack development.',
+      achievements: [
+        'Built scalable web applications using React and Node.js',
+        'Mentored 50+ students in MERN stack development',
+        'Implemented best practices in software development'
+      ]
     },
     {
-      title: 'Full Stack Developer',
-      company: 'Startup',
-      period: '2018 - 2020',
-      description: 'Developed and maintained multiple web applications using modern technologies'
+      title: 'Software Developer',
+      company: 'Previous Company',
+      period: '2020 - 2022',
+      description: 'Developed and maintained multiple web applications using modern technologies.',
+      achievements: [
+        'Led development of enterprise applications',
+        'Implemented CI/CD pipelines',
+        'Optimized application performance'
+      ]
     }
   ];
 
   const education = [
     {
       degree: 'Bachelor of Science in Computer Science',
-      school: 'University Name',
-      period: '2014 - 2018',
-      description: 'Graduated with honors, specialized in Software Engineering'
+      school: 'Your University',
+      period: '2016 - 2020',
+      description: 'Specialized in Software Engineering and Web Development',
+      achievements: [
+        'Graduated with honors',
+        'Completed advanced coursework in web development',
+        'Participated in multiple hackathons'
+      ]
     }
   ];
 
@@ -76,24 +104,25 @@ const About = () => {
             >
               <Box sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                 <Avatar
-                  src="/assets/Profile-icon.webp"
-                  alt="Profile"
+                  src="/assets/Profile-icon.jpg"
+                  alt="Fenix T.S"
                   sx={{
                     width: 200,
                     height: 200,
                     mb: 3,
                     border: '4px solid',
                     borderColor: 'primary.main',
+                    boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
                   }}
                 />
                 <Typography variant="h4" component="h1" gutterBottom>
-                  Your Name
+                  Fenix T.S
                 </Typography>
                 <Typography variant="h6" color="text.secondary" gutterBottom>
-                  Full Stack Developer
+                  Full Stack Developer & MERN Stack Trainer
                 </Typography>
                 <Typography color="text.secondary" align="center" paragraph>
-                  Passionate about creating elegant solutions to complex problems
+                  Passionate about creating innovative solutions and mentoring the next generation of developers
                 </Typography>
               </Box>
             </motion.div>
@@ -109,14 +138,16 @@ const About = () => {
                   About Me
                 </Typography>
                 <Typography paragraph>
-                  I am a passionate Full Stack Developer with expertise in building modern web applications.
-                  With a strong foundation in both frontend and backend development, I create scalable
-                  and maintainable solutions that solve real-world problems.
+                  I am a passionate MERN Stack Developer & Full Stack Trainer with expertise in both front-end and back-end technologies. 
+                  With a strong foundation in React.js, Node.js, Express.js, and MongoDB, I specialize in building dynamic and scalable web applications.
                 </Typography>
                 <Typography paragraph>
-                  My journey in software development started with a curiosity about how things work on the web.
-                  Today, I specialize in creating responsive, user-friendly applications using cutting-edge
-                  technologies and best practices.
+                  Beyond development, I am dedicated to mentoring and training aspiring developers, guiding them in full-stack development, 
+                  real-world project execution, and industry best practices. My experience spans freelance projects, software training, 
+                  and cloud-based application development.
+                </Typography>
+                <Typography>
+                  Driven by problem-solving and innovation, I constantly explore new technologies to enhance efficiency and user experiences in web applications.
                 </Typography>
               </Paper>
             </motion.div>
@@ -134,17 +165,28 @@ const About = () => {
               <CodeIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
               Skills
             </Typography>
-            <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1, justifyContent: 'center' }}>
-              {skills.map((skill, index) => (
-                <Chip
-                  key={index}
-                  label={skill}
-                  color="primary"
-                  variant="outlined"
-                  sx={{ m: 0.5 }}
-                />
+            <Grid container spacing={4}>
+              {skills.map((category, index) => (
+                <Grid item xs={12} md={6} key={index}>
+                  <Paper elevation={2} sx={{ p: 3 }}>
+                    <Typography variant="h6" gutterBottom color="primary">
+                      {category.category}
+                    </Typography>
+                    <Box sx={{ display: 'flex', flexWrap: 'wrap', gap: 1 }}>
+                      {category.items.map((skill, skillIndex) => (
+                        <Chip
+                          key={skillIndex}
+                          label={skill}
+                          color="primary"
+                          variant="outlined"
+                          sx={{ m: 0.5 }}
+                        />
+                      ))}
+                    </Box>
+                  </Paper>
+                </Grid>
               ))}
-            </Box>
+            </Grid>
           </motion.div>
         </Box>
 
@@ -169,9 +211,16 @@ const About = () => {
                     <Typography color="text.secondary" gutterBottom>
                       {exp.company} | {exp.period}
                     </Typography>
-                    <Typography>
+                    <Typography paragraph>
                       {exp.description}
                     </Typography>
+                    <Box component="ul" sx={{ pl: 2, mb: 0 }}>
+                      {exp.achievements.map((achievement, aIndex) => (
+                        <Typography component="li" key={aIndex} sx={{ mb: 1 }}>
+                          {achievement}
+                        </Typography>
+                      ))}
+                    </Box>
                   </Paper>
                 </motion.div>
               </Grid>
@@ -200,9 +249,16 @@ const About = () => {
                     <Typography color="text.secondary" gutterBottom>
                       {edu.school} | {edu.period}
                     </Typography>
-                    <Typography>
+                    <Typography paragraph>
                       {edu.description}
                     </Typography>
+                    <Box component="ul" sx={{ pl: 2, mb: 0 }}>
+                      {edu.achievements.map((achievement, aIndex) => (
+                        <Typography component="li" key={aIndex} sx={{ mb: 1 }}>
+                          {achievement}
+                        </Typography>
+                      ))}
+                    </Box>
                   </Paper>
                 </motion.div>
               </Grid>
