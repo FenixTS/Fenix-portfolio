@@ -268,7 +268,7 @@ const Profile = () => {
                 >
                   <Box
                     component="img"
-                    src="/assets/Profile-icon.webp"
+                    src="/assets/Profile-icon.jpg"
                     alt="Profile"
                     sx={{
                       width: '100%',
@@ -465,19 +465,19 @@ const Profile = () => {
                     <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <EmailIcon color="primary" />
-                        <Typography>email@example.com</Typography>
+                        <Typography>fenixt.s2000@gmail.com</Typography>
                       </Box>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <PhoneIcon color="primary" />
-                        <Typography>+1 234 567 8900</Typography>
+                        <Typography>+91 7305760579</Typography>
                       </Box>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <LocationOnIcon color="primary" />
-                        <Typography>City, Country</Typography>
+                        <Typography>Chennai, Tamil Nadu, India</Typography>
                       </Box>
                       <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                         <CakeIcon color="primary" />
-                        <Typography>Date of Birth</Typography>
+                        <Typography>05-03-2000</Typography>
                       </Box>
                         {/* Languages */}
                   <Grid item xs={12} md={6}>
@@ -573,7 +573,7 @@ const Profile = () => {
                       <Button
                         variant="contained"
                         startIcon={<DownloadIcon />}
-                        href="/resume.pdf"
+                        href="/assets/files/Fenix-Resume.pdf"
                         target="_blank"
                         download
                         sx={{

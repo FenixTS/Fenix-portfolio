@@ -26,8 +26,8 @@ const About = () => {
   const handleDownloadResume = () => {
     // Create a link element
     const link = document.createElement('a');
-    link.href = '/resume.pdf';
-    link.download = 'FenixTS_Resume.pdf';
+    link.href = '/assets/files/Fenix-Resume.pdf';
+    link.download = '/assets/files/Fenix-Resume.pdf';
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);

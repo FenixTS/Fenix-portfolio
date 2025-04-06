@@ -40,17 +40,17 @@ const Footer = () => {
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <EmailIcon color="primary" />
-                <Link href="mailto:your.email@example.com" color="inherit" underline="hover">
-                  your.email@example.com
+                <Link href="mailto:fenixt.s2000@gmail.com" color="inherit" underline="hover">
+                  fenixt.s2000@gmail.com
                 </Link>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <PhoneIcon color="primary" />
-                <Typography>+1 234 567 8900</Typography>
+                <Typography>+91 7305760579</Typography>
               </Box>
               <Box sx={{ display: 'flex', alignItems: 'center', gap: 1 }}>
                 <LocationOnIcon color="primary" />
-                <Typography>Chennai, Tamil Nadu</Typography>
+                <Typography>Chennai, Tamil Nadu, India</Typography>
               </Box>
             </Box>
           </Grid>
@@ -136,7 +136,7 @@ const Footer = () => {
         {/* Copyright */}
         <Box sx={{ textAlign: 'center' }}>
           <Typography variant="body2" color="text.secondary">
-            © {currentYear} Your Name. All rights reserved.
+            © {currentYear} Fenix T.S. All rights reserved.
           </Typography>
           <Typography variant="body2" color="text.secondary" sx={{ mt: 1 }}>
             Made with ❤️ using React & Material-UI

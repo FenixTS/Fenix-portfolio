@@ -22,44 +22,64 @@ interface TechItem {
 
 const techStack: TechItem[] = [
   {
+    name: 'JavaScript',
+    logo: '/assets/logos/JavaScript-logo.png',
+    description: 'A programming language that is one of the core technologies of the World Wide Web, alongside HTML and CSS.',
+  },
+  {
     name: 'React',
-    logo: '/logos/react.svg',
+    logo: '/assets/logos/React-logo.png',
     description: 'A JavaScript library for building user interfaces, particularly single-page applications.',
   },
   {
     name: 'Node.js',
-    logo: '/logos/nodejs.svg',
+    logo: '/assets/logos/Node-logo.png',
     description: 'A JavaScript runtime built on Chrome\'s V8 JavaScript engine for building scalable network applications.',
   },
   {
     name: 'TypeScript',
-    logo: '/logos/typescript.svg',
+    logo: '/assets/logos/TypeScript-logo.png',
     description: 'A typed superset of JavaScript that compiles to plain JavaScript.',
   },
   {
     name: 'MongoDB',
-    logo: '/logos/mongodb.svg',
+    logo: '/assets/logos/Mongodb-logo.png',
     description: 'A NoSQL database program that uses JSON-like documents with optional schemas.',
   },
   {
     name: 'Express',
-    logo: '/logos/express.svg',
+    logo: '/assets/logos/express-logo.png',
     description: 'A minimal and flexible Node.js web application framework.',
   },
   {
+    name: 'Bootstrap',
+    logo: '/assets/logos/Bootstrap-logo.png',
+    description: 'A popular CSS framework for developing responsive and mobile-first websites.',
+  },
+  {
     name: 'Material-UI',
-    logo: '/logos/material-ui.svg',
+    logo: '/assets/logos/MaterialUI-logo.png',
     description: 'A comprehensive suite of UI tools implementing Google\'s Material Design.',
   },
   {
-    name: 'Docker',
-    logo: '/logos/docker.svg',
+    name: 'Azure',
+    logo: '/assets/logos/Azure-logo.png',
     description: 'A platform for developing, shipping, and running applications in containers.',
   },
   {
-    name: 'Git',
-    logo: '/logos/git.svg',
-    description: 'A distributed version control system for tracking changes in source code.',
+    name: 'JSON',
+    logo: '/assets/logos/Json-logo.webp',
+    description: 'A lightweight data-interchange format that is easy for humans to read and write, and easy for machines to parse and generate.',
+  },
+  {
+    name: 'Postman',
+    logo: '/assets/logos/Postman-logo.png',
+    description: 'A platform for developing, shipping, and running applications in containers.',
+  },
+  {
+    name: 'Firebase',
+    logo: '/assets/logos/Firebase-logo.png',
+    description: 'A platform for developing, shipping, and running applications in containers.',
   },
 ];
 
