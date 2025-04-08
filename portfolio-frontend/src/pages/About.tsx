@@ -9,6 +9,8 @@ import DownloadIcon from '@mui/icons-material/Download';
 import CloseIcon from '@mui/icons-material/Close';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import PictureAsPdfIcon from '@mui/icons-material/PictureAsPdf';
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import GitHubIcon from '@mui/icons-material/GitHub';
 
 const About = () => {
   const theme = useTheme();
@@ -24,7 +26,6 @@ const About = () => {
   };
 
   const handleDownloadResume = () => {
-    // Create a link element
     const link = document.createElement('a');
     link.href = '/assets/files/Fenix-Resume.pdf';
     link.download = 'Fenix-Resume.pdf';
@@ -35,20 +36,20 @@ const About = () => {
 
   const skills = [
     {
-      category: 'Frontend',
-      items: ['React', 'TypeScript', 'Material-UI', 'HTML/CSS', 'JavaScript']
+      category: 'Frontend Development',
+      items: ['React', 'TypeScript', 'Material-UI', 'HTML/CSS', 'JavaScript', 'Redux']
     },
     {
-      category: 'Backend',
-      items: ['Node.js', 'Express', 'MongoDB', 'REST APIs', 'GraphQL']
+      category: 'Backend Development',
+      items: ['Node.js', 'Express', 'MongoDB', 'REST APIs', 'GraphQL', 'MySQL']
     },
     {
-      category: 'DevOps & Tools',
-      items: ['Git', 'Docker', 'AWS', 'Azure', 'CI/CD']
+      category: 'Mobile Development',
+      items: ['React Native', 'iOS Development', 'Android Development', 'Flutter']
     },
     {
-      category: 'Mobile',
-      items: ['React Native', 'iOS Development', 'Android Development']
+      category: 'Cloud & DevOps',
+      items: ['Microsoft Azure', 'AWS', 'Docker', 'Git', 'CI/CD', 'Azure DevOps']
     }
   ];
 
@@ -59,20 +60,22 @@ const About = () => {
       period: '2022 - Present',
       description: 'Developing and maintaining web applications using MERN stack. Training aspiring developers in full-stack development.',
       achievements: [
-        'Built scalable web applications using React and Node.js',
+        'Built scalable web applications using React, Node.js, and MongoDB',
         'Mentored 50+ students in MERN stack development',
-        'Implemented best practices in software development'
+        'Implemented best practices in software development and deployment',
+        'Developed cross-platform mobile applications using React Native'
       ]
     },
     {
       title: 'Software Developer',
       company: 'Previous Company',
       period: '2020 - 2022',
-      description: 'Developed and maintained multiple web applications using modern technologies.',
+      description: 'Developed and maintained multiple web and mobile applications using modern technologies.',
       achievements: [
-        'Led development of enterprise applications',
-        'Implemented CI/CD pipelines',
-        'Optimized application performance'
+        'Led development of enterprise applications using React and Node.js',
+        'Implemented CI/CD pipelines for automated deployment',
+        'Optimized application performance and user experience',
+        'Developed RESTful APIs and integrated third-party services'
       ]
     }
   ];
@@ -85,8 +88,9 @@ const About = () => {
       description: 'Specialized in Software Engineering and Web Development',
       achievements: [
         'Graduated with honors',
-        'Completed advanced coursework in web development',
-        'Participated in multiple hackathons'
+        'Completed advanced coursework in web and mobile development',
+        'Participated in multiple hackathons and coding competitions',
+        'Developed several projects using modern web technologies'
       ]
     }
   ];
@@ -124,6 +128,36 @@ const About = () => {
                 <Typography color="text.secondary" align="center" paragraph>
                   Passionate about creating innovative solutions and mentoring the next generation of developers
                 </Typography>
+                <Box sx={{ display: 'flex', gap: 2, mt: 2 }}>
+                  <Button
+                    variant="contained"
+                    startIcon={<LinkedInIcon />}
+                    href="https://www.linkedin.com/in/fenix-t-s/"
+                    target="_blank"
+                    sx={{
+                      bgcolor: '#0077b5',
+                      '&:hover': {
+                        bgcolor: '#005582',
+                      },
+                    }}
+                  >
+                    LinkedIn
+                  </Button>
+                  <Button
+                    variant="contained"
+                    startIcon={<GitHubIcon />}
+                    href="https://github.com/FenixTS"
+                    target="_blank"
+                    sx={{
+                      bgcolor: '#333',
+                      '&:hover': {
+                        bgcolor: '#000',
+                      },
+                    }}
+                  >
+                    GitHub
+                  </Button>
+                </Box>
               </Box>
             </motion.div>
           </Grid>
@@ -168,7 +202,7 @@ const About = () => {
             <Grid container spacing={4}>
               {skills.map((category, index) => (
                 <Grid item xs={12} md={6} key={index}>
-                  <Paper elevation={2} sx={{ p: 3 }}>
+                  <Paper elevation={2} sx={{ p: 3, height: '100%' }}>
                     <Typography variant="h6" gutterBottom color="primary">
                       {category.category}
                     </Typography>
