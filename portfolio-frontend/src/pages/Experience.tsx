@@ -34,22 +34,23 @@ const Experience = () => {
 
   const experiences = [
     {
-      title: 'Senior Software Engineer',
-      company: 'Tech Company',
-      period: '2020 - Present',
-      description: 'Led development of multiple full-stack applications using React, Node.js, and cloud technologies.',
+      title: 'Software Trainer',
+      company: 'Innovation Nest',
+      period: '2024 - Present',
+      description: 'Successfully trained and mentored students in full stack development, with many placed in startups and companies',
+    },
+  
+    {
+      title: 'Software Developer & Azure Cloud Services Intern',
+      company: 'Magic Bus India Foundation', 
+      period: 'Jan 2024 - Mar 2024',
+      description: 'Completed intensive training program in software development and Microsoft Azure cloud services. Gained hands-on experience with modern development tools and cloud computing concepts.',
     },
     {
-      title: 'Full Stack Developer',
-      company: 'Startup',
-      period: '2018 - 2020',
-      description: 'Developed and maintained web applications using modern JavaScript frameworks and cloud services.',
-    },
-    {
-      title: 'Software Developer',
-      company: 'IT Solutions',
-      period: '2016 - 2018',
-      description: 'Built and maintained client-side applications using React and TypeScript.',
+      title: 'MERN Stack Developer',
+      company: 'Freelancer', 
+      period: '2022 - 2023',
+      description: 'Developed and maintained web applications using MongoDB, Express.js, React.js and Node.js. Created responsive user interfaces and RESTful APIs.',
     },
   ];
 

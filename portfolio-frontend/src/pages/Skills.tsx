@@ -32,7 +32,7 @@ const Skills = () => {
       title: 'Frontend Development',
       skills: [
         { name: 'React', level: 90 },
-        { name: 'TypeScript', level: 85 },
+        { name: 'Tailwind CSS', level: 75 },
         { name: 'HTML/CSS', level: 95 },
         { name: 'JavaScript', level: 90 },
       ],
@@ -43,13 +43,13 @@ const Skills = () => {
         { name: 'Node.js', level: 85 },
         { name: 'Express.js', level: 80 },
         { name: 'MongoDB', level: 75 },
-        { name: 'SQL', level: 70 },
+        { name: 'SQL', level: 50 },
       ],
     },
     {
       title: 'Cloud & DevOps',
       skills: [
-        { name: 'AWS', level: 75 },
+        // { name: 'AWS', level: 75 },
         { name: 'Azure', level: 70 },
         { name: 'Docker', level: 65 },
         { name: 'CI/CD', level: 70 },
@@ -58,10 +58,23 @@ const Skills = () => {
     {
       title: 'Tools & Others',
       skills: [
-        { name: 'Git', level: 90 },
+        { name: 'GitHub', level: 90 },
         { name: 'VS Code', level: 95 },
-        { name: 'Figma', level: 70 },
-        { name: 'Agile', level: 85 },
+        // { name: 'Figma', level: 70 },
+        { name: 'Postman', level: 85 },
+      ],
+    },
+    {
+      title: 'Soft Skills',
+      skills: [
+        { name: 'Communication', level: 90 },
+        { name: 'Teamwork', level: 95 },
+        { name: 'Problem Solving', level: 85 },
+        { name: 'Time Management', level: 80 },
+        { name: 'Leadership', level: 80 },
+        { name: 'Adaptability', level: 75 },
+        { name: 'Creativity', level: 75 },
+        { name: 'Proactiveness', level: 60 },
       ],
     },
   ];

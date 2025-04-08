@@ -41,56 +41,57 @@ const achievements: Achievement[] = [
     id: 1,
     title: 'AZ-900 Azure Fundamentals',
     description: 'Microsoft Certified: Azure Fundamentals',
-    date: '2023',
+    date: '2024',
     category: 'certification',
     icon: <MilitaryTechIcon />,
     color: '#0078D4',
   },
   {
     id: 2,
-    title: 'Full Stack Development Certification',
-    description: 'Completed comprehensive full-stack development training program',
-    date: '2022',
-    category: 'education',
-    icon: <SchoolIcon />,
-    color: '#4CAF50',
-  },
-  {
-    id: 3,
     title: 'Best Project Award',
-    description: 'Awarded for developing an innovative web application',
-    date: '2022',
+    description: 'Awarded for developing an innovative web application and using Azure Cloud Services',
+    date: '2024',
     category: 'award',
     icon: <EmojiEventsIcon />,
     color: '#FFC107',
   },
   {
-    id: 4,
-    title: 'Senior Developer Promotion',
-    description: 'Promoted to Senior Developer role for outstanding performance',
+    id: 3,
+    title: 'Full Stack Development Certification',
+    description: 'Completed comprehensive full-stack development training program',
     date: '2023',
-    category: 'experience',
-    icon: <WorkIcon />,
-    color: '#9C27B0',
+    category: 'education',
+    icon: <SchoolIcon />,
+    color: '#4CAF50',
   },
-  {
-    id: 5,
-    title: 'React Expert Certification',
-    description: 'Advanced React.js development certification',
-    date: '2023',
-    category: 'certification',
-    icon: <MilitaryTechIcon />,
-    color: '#61DAFB',
-  },
-  {
-    id: 6,
-    title: 'Outstanding Mentor Award',
-    description: 'Recognized for excellence in mentoring junior developers',
-    date: '2023',
-    category: 'award',
-    icon: <StarIcon />,
-    color: '#FF9800',
-  },
+  
+  // {
+  //   id: 4,
+  //   title: 'Senior Developer Promotion',
+  //   description: 'Promoted to Senior Developer role for outstanding performance',
+  //   date: '2023',
+  //   category: 'experience',
+  //   icon: <WorkIcon />,
+  //   color: '#9C27B0',
+  // },
+  // {
+  //   id: 5,
+  //   title: 'React Expert Certification',
+  //   description: 'Advanced React.js development certification',
+  //   date: '2023',
+  //   category: 'certification',
+  //   icon: <MilitaryTechIcon />,
+  //   color: '#61DAFB',
+  // },
+  // {
+  //   id: 6,
+  //   title: 'Outstanding Mentor Award',
+  //   description: 'Recognized for excellence in mentoring junior developers',
+  //   date: '2023',
+  //   category: 'award',
+  //   icon: <StarIcon />,
+  //   color: '#FF9800',
+  // },
 ];
 
 // Slider images data
@@ -111,7 +112,7 @@ const sliderImages = [
     id: 3,
     url: '/assets/images/Trainer_pic_1.jpg',
     title: 'Training Excellence',
-    description: 'Successfully Trained 100+ Students in Full Stack Development',
+    description: 'Successfully Trained 500+ Students in Full Stack Development',
   },
 ];
 
@@ -162,6 +163,43 @@ const photoGallery = [
       img: '/assets/images/Guide.png',
       title: 'Guide',
     },
+    {
+      id:10 ,
+      img: '/assets/images/Cognizant_Hackathon_1.png',
+      title: 'Cognizant Hackathon',
+    },
+    {
+      id:11,
+      img: '/assets/images/Cognizant_Hackathon_2.png',
+      title: 'Cognizant Hackathon',
+    },
+    {
+      id:12,
+      img: '/assets/images/NPR_College.jpg',
+      title: 'NPR College',
+    },
+    {
+      id:13,
+      img: '/assets/images/Me_NPR.jpg',
+      title: 'NPR College',
+    },
+    {
+      id:14,
+      img: '/assets/images/Screen.JPG',
+      title: 'Project',
+    },
+    {
+      id:15,
+      img: '/assets/images/BestPerformer.jpg',
+      title: 'Best Performer',
+    },
+    // {
+    //   id:16,
+    //   img: '/assets/images/BestPerformer_2.jpg',
+    //   title: 'Best Performer',
+    // },
+    
+    
 ];
 
 const Achievements = () => {

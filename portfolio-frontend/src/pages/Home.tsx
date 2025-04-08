@@ -113,7 +113,7 @@ const Home = () => {
             {[
               {
                 title: 'Web Development',
-                description: 'Building modern, responsive web applications using React, TypeScript, and Material-UI. Creating seamless user experiences with clean, maintainable code.',
+                description: 'Building modern, responsive web applications using React,and Material-UI. Creating seamless user experiences with clean, maintainable code.',
                 icon: <CodeIcon sx={{ fontSize: 48, color: 'primary.main' }} />,
               },
               {

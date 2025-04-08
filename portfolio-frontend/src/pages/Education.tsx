@@ -9,15 +9,24 @@ import StarIcon from '@mui/icons-material/Star';
 const Education = () => {
   const academicBackground = [
     {
+      degree: 'Software Development & Microsoft Azure Training',
+      school: 'Magic Bus Indian Foundation',
+      period: 'Jan 2024 - Mar 2024',
+      description: 'Completed intensive training program in software development and Microsoft Azure cloud services. Gained hands-on experience with modern development tools and cloud computing concepts.',
+      achievements: [
+        'Successfully completed training program',
+        'received best performance award',
+        'Built multiple projects using Azure services',
+        'Learned full-stack development with hands-on project'
+      ]
+    },
+    {
       degree: 'Bachelor of Engineering in Mechanical Engineering',
-      school: 'Anna University',
+      school: 'St. Joseph College of Engineering, Anna University',
       period: '2018 - 2022',
       description: 'Transitioned from Mechanical Engineering to IT, leveraging problem-solving skills and analytical thinking to excel in software development. Completed various programming certifications and projects to build expertise in full-stack development.',
       achievements: [
         'CGPA: 8.01/10',
-      
-        
-    
       ]
     },
     {
@@ -44,47 +53,42 @@ const Education = () => {
 
   const certifications = [
     {
-      title: 'AWS Certified Solutions Architect',
-      issuer: 'Amazon Web Services',
+      title: 'Microsoft Azure AZ-900',
+      issuer: 'Microsoft',
+      date: '2024',
+      description: 'Microsoft Azure Fundamentals certification validating cloud concepts, Azure services, security, privacy, compliance, and trust',
+      link: 'https://www.credly.com/badges/bb54ad18-c7c1-4564-a46b-8c516372aae0/linked_in?t=sgnh9a'
+    },
+    {
+      title: 'Azure & MERN Stack Development',
+      issuer: 'Future Ready Talent',
+      date: '22-04-2024',
+      description: 'Comprehensive certification in MongoDB, Express.js, React.js, and Node.js full-stack development',
+      link: '/assets/Certifications/FRT.jpg'
+    },
+    {
+      title: 'Website Development',
+      issuer: 'Magic Bus India Foundation',
       date: '2023',
-      description: 'Professional certification in cloud architecture and services',
-      link: 'https://aws.amazon.com/certification/'
-    },
-    {
-      title: 'Professional Scrum Master I',
-      issuer: 'Scrum.org',
-      date: '2022',
-      description: 'Certified in agile project management methodologies',
-      link: 'https://www.scrum.org/'
-    },
-    {
-      title: 'Google Cloud Professional Developer',
-      issuer: 'Google',
-      date: '2022',
-      description: 'Expertise in Google Cloud Platform development',
-      link: 'https://cloud.google.com/certification/'
+      description: 'Developed and deployed responsive websites using modern web technologies and best practices',
+      link: '/assets/Certifications/MagicBus_Completion_Certification.jpg'
     }
   ];
 
   const achievements = [
     {
-      title: 'Best Undergraduate Project Award',
-      organization: 'University Department',
-      date: '2018',
-      description: 'Awarded for developing an innovative AI-powered healthcare application'
+      title: 'Trained 500+ Students in Full Stack Development',
+      organization: 'SSF & INN',
+      date: '2024',
+      description: 'Successfully trained and mentored students in full stack development, with many placed in startups and companies'
     },
     {
-      title: 'Hackathon Winner',
-      organization: 'Tech Conference',
-      date: '2017',
-      description: 'First place in the annual university hackathon'
+      title: 'Best Project Award',
+      organization: 'Magic Bus India Foundation',
+      date: '2024',
+      description: 'Awarded for developing an innovative web application and using Azure Cloud Services'
     },
-    {
-      title: 'Research Grant Recipient',
-      organization: 'Research Institute',
-      date: '2017',
-      description: 'Received funding for research in machine learning applications'
-    }
+   
   ];
 
   return (
@@ -134,7 +138,7 @@ const Education = () => {
                     transition={{ duration: 0.5, delay: index * 0.2 }}
                   >
                     <Paper elevation={3} sx={{ p: 3 }}>
-                      <Typography variant="h6" gutterBottom>
+                      <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
                         {edu.degree}
                       </Typography>
                       <Typography color="text.secondary" gutterBottom>
@@ -185,7 +189,7 @@ const Education = () => {
                       },
                     }}
                   >
-                    <Typography variant="h6" gutterBottom>
+                    <Typography variant="h6" gutterBottom sx={{ fontWeight: 'bold' }}>
                       {cert.title}
                     </Typography>
                     <Typography color="text.secondary" gutterBottom>
