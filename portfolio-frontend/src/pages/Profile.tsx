@@ -264,6 +264,36 @@ const Profile = () => {
                     overflow: 'hidden',
                     border: `4px solid ${theme.palette.background.paper}`,
                     boxShadow: theme.shadows[4],
+                    position: 'relative',
+                    '&::before': {
+                      content: '""',
+                      position: 'absolute',
+                      top: '-50%',
+                      left: '-50%',
+                      width: '200%',
+                      height: '200%',
+                      background: 'linear-gradient(45deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.8) 50%, rgba(255,255,255,0) 100%)',
+                      transform: 'rotate(45deg)',
+                      transition: 'all 0.6s ease',
+                      opacity: 0,
+                      zIndex: 2,
+                    },
+                    '&:hover::before': {
+                      animation: 'shine 1.5s infinite',
+                    },
+                    '@keyframes shine': {
+                      '0%': {
+                        transform: 'translateX(-100%) rotate(45deg)',
+                        opacity: 0,
+                      },
+                      '50%': {
+                        opacity: 0.5,
+                      },
+                      '100%': {
+                        transform: 'translateX(100%) rotate(45deg)',
+                        opacity: 0,
+                      },
+                    },
                   }}
                 >
                   <Box
@@ -295,15 +325,13 @@ const Profile = () => {
                   transition={{ delay: 0.2 }}
                 >
                   <Typography variant="h4" gutterBottom>
-                    Your Name
+                    Fenix T.S
                   </Typography>
                   <Typography variant="h6" color="primary" gutterBottom>
-                    Full Stack Developer
+                  Full Stack Developer | MERN Stack Trainer | Mobile Developer
                   </Typography>
                   <Typography variant="body1" paragraph>
-                    Passionate developer with expertise in building modern web applications.
-                    Experienced in full-stack development with a focus on creating scalable
-                    and maintainable solutions.
+                    Full Stack Developer specializing in MERN stack development and training. Experienced in building scalable web applications with Azure deployment.
                   </Typography>
                 </motion.div>
               </Paper>

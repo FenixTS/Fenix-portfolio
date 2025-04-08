@@ -113,7 +113,7 @@ const Footer = () => {
                 <GitHubIcon />
               </IconButton>
               <IconButton
-                href="https://twitter.com/yourhandle"
+                href="https://twitter.com/FenixTS"
                 target="_blank"
                 rel="noopener noreferrer"
                 sx={{

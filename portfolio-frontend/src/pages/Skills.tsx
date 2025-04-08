@@ -33,7 +33,7 @@ const Skills = () => {
       skills: [
         { name: 'React', level: 90 },
         { name: 'Tailwind CSS', level: 75 },
-        { name: 'HTML/CSS', level: 95 },
+        { name: 'React Native', level: 70 },
         { name: 'JavaScript', level: 90 },
       ],
     },

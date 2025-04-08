@@ -37,19 +37,19 @@ const About = () => {
   const skills = [
     {
       category: 'Frontend Development',
-      items: ['React', 'TypeScript', 'Material-UI', 'HTML/CSS', 'JavaScript', 'Redux']
+      items: ['React', 'TypeScript', 'Material-UI', 'HTML/CSS', 'JavaScript', 'Redux', 'Next.js', 'Tailwind CSS']
     },
     {
       category: 'Backend Development',
-      items: ['Node.js', 'Express', 'MongoDB', 'REST APIs', 'GraphQL', 'MySQL']
+      items: ['Node.js', 'Express', 'MongoDB', 'REST APIs', 'GraphQL', 'MySQL', 'PostgreSQL', 'Firebase']
     },
     {
       category: 'Mobile Development',
-      items: ['React Native', 'iOS Development', 'Android Development', 'Flutter']
+      items: ['React Native', 'iOS Development', 'Android Development', 'Flutter', 'Expo']
     },
     {
       category: 'Cloud & DevOps',
-      items: ['Microsoft Azure', 'AWS', 'Docker', 'Git', 'CI/CD', 'Azure DevOps']
+      items: ['Microsoft Azure', 'AWS', 'Docker', 'Git', 'CI/CD', 'Azure DevOps', 'Kubernetes', 'Jenkins']
     }
   ];
 
@@ -63,7 +63,8 @@ const About = () => {
         'Built scalable web applications using React, Node.js, and MongoDB',
         'Mentored 50+ students in MERN stack development',
         'Implemented best practices in software development and deployment',
-        'Developed cross-platform mobile applications using React Native'
+        'Developed cross-platform mobile applications using React Native',
+        'Created and deployed cloud-based solutions using Azure and AWS'
       ]
     },
     {
@@ -75,7 +76,8 @@ const About = () => {
         'Led development of enterprise applications using React and Node.js',
         'Implemented CI/CD pipelines for automated deployment',
         'Optimized application performance and user experience',
-        'Developed RESTful APIs and integrated third-party services'
+        'Developed RESTful APIs and integrated third-party services',
+        'Collaborated with cross-functional teams to deliver high-quality software'
       ]
     }
   ];
@@ -90,7 +92,8 @@ const About = () => {
         'Graduated with honors',
         'Completed advanced coursework in web and mobile development',
         'Participated in multiple hackathons and coding competitions',
-        'Developed several projects using modern web technologies'
+        'Developed several projects using modern web technologies',
+        'Received academic excellence awards'
       ]
     }
   ];

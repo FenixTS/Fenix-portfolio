@@ -186,6 +186,25 @@ const Home = () => {
               background: 'url("/assets/pattern.png")',
               opacity: 0.1,
             },
+            '&::after': {
+              content: '""',
+              position: 'absolute',
+              top: '-50%',
+              left: '-50%',
+              right: '-50%',
+              bottom: '-50%',
+              background: 'linear-gradient(45deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 60%)',
+              transform: 'rotate(45deg)',
+              animation: 'shine 3s infinite',
+            },
+            '@keyframes shine': {
+              '0%': {
+                transform: 'translateX(-100%) rotate(45deg)',
+              },
+              '100%': {
+                transform: 'translateX(100%) rotate(45deg)',
+              },
+            },
           }}
         >
           <Typography variant="h3" component="h2" gutterBottom sx={{ position: 'relative' }}>
@@ -207,6 +226,26 @@ const Home = () => {
                 transform: 'translateY(-2px)',
               },
               transition: 'all 0.3s ease',
+              overflow: 'hidden',
+              '&::after': {
+                content: '""',
+                position: 'absolute',
+                top: '-50%',
+                left: '-50%',
+                right: '-50%',
+                bottom: '-50%',
+                background: 'linear-gradient(45deg, rgba(255,255,255,0) 40%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 60%)',
+                transform: 'rotate(45deg)',
+                animation: 'buttonShine 3s infinite',
+              },
+              '@keyframes buttonShine': {
+                '0%': {
+                  transform: 'translateX(-100%) rotate(45deg)',
+                },
+                '100%': {
+                  transform: 'translateX(100%) rotate(45deg)',
+                },
+              },
             }}
           >
             Get in Touch

@@ -165,7 +165,28 @@ const Education = () => {
         {/* Certifications */}
         <Box sx={{ mb: 8 }}>
           <Typography variant="h4" component="h2" gutterBottom align="center" sx={{ mb: 4 }}>
-            <WorkspacePremiumIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
+            <WorkspacePremiumIcon 
+              sx={{ 
+                mr: 1, 
+                verticalAlign: 'middle',
+                color: 'green',
+                animation: 'shakeAndZoom 2s infinite',
+                '@keyframes shakeAndZoom': {
+                  '0%, 100%': {
+                    transform: 'scale(1) rotate(0deg)',
+                  },
+                  '25%': {
+                    transform: 'scale(1.2) rotate(-5deg)', 
+                  },
+                  '50%': {
+                    transform: 'scale(0.9) rotate(5deg)',
+                  },
+                  '75%': {
+                    transform: 'scale(1.1) rotate(-5deg)',
+                  }
+                }
+              }}
+            />
             Professional Certifications
           </Typography>
           <Grid container spacing={4}>
@@ -224,7 +245,26 @@ const Education = () => {
         {/* Achievements */}
         <Box>
           <Typography variant="h4" component="h2" gutterBottom align="center" sx={{ mb: 4 }}>
-            <EmojiEventsIcon sx={{ mr: 1, verticalAlign: 'middle' }} />
+            <EmojiEventsIcon sx={{ 
+              mr: 1, 
+              verticalAlign: 'middle',
+              color: '#FFD700',
+              animation: 'blinkAndScale 2s infinite',
+              '@keyframes blinkAndScale': {
+                '0%': { 
+                  opacity: 1,
+                  transform: 'scale(1)'
+                },
+                '50%': { 
+                  opacity: 0.3,
+                  transform: 'scale(1.2)'
+                },
+                '100%': { 
+                  opacity: 1,
+                  transform: 'scale(1)'
+                }
+              }
+            }} />
             Notable Achievements
           </Typography>
           <Grid container spacing={4}>
@@ -244,7 +284,32 @@ const Education = () => {
                       gap: 2,
                     }}
                   >
-                    <StarIcon color="primary" sx={{ fontSize: 40 }} />
+                    <StarIcon color="primary" sx={{ 
+                      fontSize: 40,
+                      animation: 'starAnimation 10s infinite',
+                      '@keyframes starAnimation': {
+                        '0%': {
+                          transform: 'rotate(0deg) scale(1)',
+                          filter: 'brightness(1)'
+                        },
+                        '25%': {
+                          transform: 'rotate(180deg) scale(1.2)',
+                          filter: 'brightness(1.5)' 
+                        },
+                        '50%': {
+                          transform: 'rotate(360deg) scale(1)',
+                          filter: 'brightness(1)'
+                        },
+                        '75%': {
+                          transform: 'rotate(180deg) scale(1.2)',
+                          filter: 'brightness(1.5)'
+                        },
+                        '100%': {
+                          transform: 'rotate(0deg) scale(1)',
+                          filter: 'brightness(1)'
+                        }
+                      }
+                    }} />
                     <Box>
                       <Typography variant="h6" gutterBottom>
                         {achievement.title}

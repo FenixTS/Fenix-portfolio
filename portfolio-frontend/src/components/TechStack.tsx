@@ -27,14 +27,19 @@ const techStack: TechItem[] = [
     description: 'A programming language that is one of the core technologies of the World Wide Web, alongside HTML and CSS.',
   },
   {
+    name: 'Node.js',
+    logo: '/assets/logos/Node-logo.png',
+    description: 'A JavaScript runtime built on Chrome\'s V8 JavaScript engine for building scalable network applications.',
+  },
+  {
     name: 'React',
     logo: '/assets/logos/React-logo.png',
     description: 'A JavaScript library for building user interfaces, particularly single-page applications.',
   },
   {
-    name: 'Node.js',
-    logo: '/assets/logos/Node-logo.png',
-    description: 'A JavaScript runtime built on Chrome\'s V8 JavaScript engine for building scalable network applications.',
+    name: 'Express',
+    logo: '/assets/logos/express-logo.png',
+    description: 'A minimal and flexible Node.js web application framework.',
   },
   {
     name: 'TypeScript',
@@ -46,11 +51,7 @@ const techStack: TechItem[] = [
     logo: '/assets/logos/Mongodb-logo.png',
     description: 'A NoSQL database program that uses JSON-like documents with optional schemas.',
   },
-  {
-    name: 'Express',
-    logo: '/assets/logos/express-logo.png',
-    description: 'A minimal and flexible Node.js web application framework.',
-  },
+ 
   {
     name: 'Bootstrap',
     logo: '/assets/logos/Bootstrap-logo.png',
@@ -125,8 +126,16 @@ const TechStack = () => {
           <Grid item xs={6} sm={4} md={3} key={tech.name}>
             <motion.div
               className="tech-item"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
+              initial={{ rotateY: 0 }}
+              whileInView={{
+                rotateY: [0, 360],
+                transition: {
+                  duration: 1.5,
+                  delay: index * 0.2,
+                  ease: "easeInOut"
+                }
+              }}
+              viewport={{ once: true, margin: "-100px" }}
             >
               <Paper
                 elevation={3}
@@ -136,9 +145,10 @@ const TechStack = () => {
                   flexDirection: 'column',
                   alignItems: 'center',
                   cursor: 'pointer',
+                  transition: 'all 0.3s ease-in-out',
                   '&:hover': {
                     transform: 'translateY(-5px)',
-                    transition: 'transform 0.3s ease-in-out',
+                    boxShadow: '0 8px 16px rgba(0,0,0,0.2)',
                   },
                 }}
                 onClick={() => handleClickOpen(tech)}
@@ -152,9 +162,10 @@ const TechStack = () => {
                     height: 64,
                     mb: 1,
                     filter: 'grayscale(100%)',
+                    transition: 'all 0.3s ease-in-out',
                     '&:hover': {
                       filter: 'grayscale(0%)',
-                      transition: 'filter 0.3s ease-in-out',
+                      transform: 'scale(1.1)',
                     },
                   }}
                 />
@@ -197,4 +208,4 @@ const TechStack = () => {
   );
 };
 
-export default TechStack; 
+export default TechStack;
