@@ -182,7 +182,12 @@ const Profile = () => {
                       href: 'https://www.linkedin.com/in/fenix-t-s/',
                       target: '_blank'
                     },
-                    { icon: <TwitterIcon />, label: 'Twitter' },
+                    { 
+                      icon: <TwitterIcon />,
+                       label: 'Twitter',
+                       href: 'https://twitter.com/FenixTS',
+                       target: '_blank'
+                    },
                   ].map((social, index) => (
                     <motion.div
                       key={index}
@@ -206,10 +211,31 @@ const Profile = () => {
                           cursor: social.href ? 'pointer' : 'default',
                           transition: 'all 0.3s ease',
                           textDecoration: 'none',
+                          position: 'relative',
+                          overflow: 'hidden',
                           '&:hover': {
                             transform: 'translateY(-5px)',
                             bgcolor: 'rgba(255,255,255,0.2)',
                           },
+                          '@keyframes shine': {
+                            '0%': {
+                              transform: 'translateX(-100%) rotate(45deg)',
+                            },
+                            '100%': {
+                              transform: 'translateX(200%) rotate(45deg)',
+                            }
+                          },
+                          '&::after': {
+                            content: '""',
+                            position: 'absolute',
+                            top: '-50%',
+                            left: '-50%',
+                            width: '200%',
+                            height: '200%',
+                            background: 'linear-gradient(45deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%)',
+                            transform: 'translateX(-100%) rotate(45deg)',
+                            animation: 'shine 3s infinite',
+                          }
                         }}
                       >
                         {social.icon}
